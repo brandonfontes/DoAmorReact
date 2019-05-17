@@ -2,22 +2,23 @@ import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { colors, metrics, fonts } from '~/styles';
 
-export const Container = styled(Animated.View)`
-    width: ${metrics.screenWidth};
-    height: 30px;
-    background: ${colors.backgroundTabs};
-    border-radius: ${metrics.baseRadius};
-    margin: ${metrics.baseMargin}px 0;
+export const ContainerCard = styled(Animated.View)`
+background: ${colors.backgroundTabs};
+border-radius: ${metrics.baseRadius};
+margin: ${metrics.baseMargin}px ;
+padding: ${metrics.baseMargin}px ;
 
-    shadowColor: #000;
-    shadowOffset: {
-        width: 0,
-        height: 12,
-    };
-    shadowOpacity: 0.58;
-    shadowRadius: 16.00;
+flex-direction: row;
 
-    elevation: 24;
+elevation: 24;
+
+`
+export const ContainerIcon = styled(Animated.View)`
+    flex: 1
+`
+
+export const ContainerText = styled(Animated.View)`
+    flex: 5; 
 `;
 
 export const TitleCard = styled.Text`

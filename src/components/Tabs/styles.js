@@ -11,16 +11,8 @@ export const Container = styled(Animated.View)`
     flex-direction: row;
     border-top-start-radius: ${metrics.tabsRadius};
     border-top-right-radius: ${metrics.tabsRadius};
-
-    shadowColor: #000;
-    shadowOffset: {
-        width: 0,
-        height: 12,
-    };
-    shadowOpacity: 0.58;
-    shadowRadius: 16.00;
-
     elevation: 24;
+   
 `;
 
 export const TabItemPrimary = styled.View`
@@ -32,32 +24,18 @@ export const TabItemPrimary = styled.View`
     background: ${colors.backgroundTabs};
     border-top-start-radius: ${metrics.tabsRadius}px;
     border-top-right-radius: ${metrics.tabsRadius}px;
-
-    shadowColor: #000;
-    shadowOffset: {
-        width: 0,
-        height: 12,
-    };
-    shadowOpacity: 0.58;
-    shadowRadius: 16.00;
-
-    elevation: 24;
 `;
 
-export const TabItemSecundary = styled.View`
+export const TabItemPrimaryContent = styled.TouchableOpacity`
+
+`;
+
+export const TabItemSecundary = styled.TouchableOpacity`
     margin: ${metrics.baseMargin}px;
     flex: 1;
     align-items: center;
     display: flex;
-    shadowColor: #000;
-    shadowOffset: {
-        width: 0,
-        height: 12,
-    };
-    shadowOpacity: 0.58;
-    shadowRadius: 16.00;
-
-    elevation: 24;
+   
 `;
 
 export const Icon = styled.View`
