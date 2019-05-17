@@ -11,8 +11,9 @@ export const Container = styled(Animated.View)`
     flex-direction: row;
     border-top-start-radius: ${metrics.tabsRadius};
     border-top-right-radius: ${metrics.tabsRadius};
-    elevation: 24;
+    elevation: ${metrics.elevation};
    
+    z-index: 5;
 `;
 
 export const TabItemPrimary = styled.View`

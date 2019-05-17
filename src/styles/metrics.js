@@ -3,7 +3,7 @@ import { Dimensions, Platform } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const metrics = {
-  smallMargin: 5,
+  smallMargin: 7,
   basePadding: 15,
   baseMargin: 15,
   doubleBaseMargin: 30,
@@ -16,6 +16,7 @@ const metrics = {
   tabsRadius: 20,
   iconPrimary: 60,
   iconSecundary: 30,
+  elevation: 10,
 };
 
 export default metrics;

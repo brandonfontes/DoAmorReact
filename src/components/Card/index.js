@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ContainerCard, ContainerIcon, ContainerText, TitleCard, AddressCard } from './styles';
+import { ContainerCard, ContainerIconStart, ContainerIconEnd, ContainerText, TitleCard, AddressCard } from './styles';
 
 import { colors, metrics, fonts } from '~/styles';
 
@@ -8,14 +8,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function Card() {
     return (
-        <ContainerCard style=''>
-            <ContainerIcon>
-             <Icon name="child-care" size={metrics.iconSecundary} color={colors.primary} />
-            </ContainerIcon>
+        <ContainerCard>
+            <ContainerIconStart>
+             <Icon name="child-care" size={metrics.iconPrimary} color={colors.primary} />
+            </ContainerIconStart>
             <ContainerText>
-                <TitleCard>Titulo da Instituição</TitleCard>
-                <AddressCard>Uma breve descrição da instituição...</AddressCard>
+                <TitleCard>Lar Esperança</TitleCard>
+                <AddressCard>Rua Doutor Augusto Maciel - 63 Hipódromo | Recife - PE</AddressCard>
             </ContainerText>
+            <ContainerIconEnd>
+             <Icon name="navigate-next" size={metrics.iconPrimary} color={colors.gray} />
+            </ContainerIconEnd>
         </ContainerCard>
+
+        
     );
 }

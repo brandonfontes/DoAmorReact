@@ -5,6 +5,7 @@ const fonts = {
     small: 11,
     tiny: 10,
     Title: 16,
+    TitleHeader: 36,
     TitleCard: 26,
     AddressCard: 20, 
     textTab: 10,
