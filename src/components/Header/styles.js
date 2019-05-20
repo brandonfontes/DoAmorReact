@@ -23,6 +23,8 @@ export const Title = styled.Text`
     flex: 1;
 `;
 
+export const ViewSearchBar = styled.View``;
+
 
 
 

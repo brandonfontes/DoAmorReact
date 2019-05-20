@@ -15,13 +15,11 @@ class Tabs extends React.Component {
                 <TabItemSecundary onPress={() => this.props.navigation.navigate('Main')}>
                     <Icon name="list" size={metrics.iconSecundary} color={colors.primary} />
                 </TabItemSecundary>
-                <TabItemPrimary>
-                    <TabItemPrimaryContent onPress={() => this.props.navigation.navigate('Map')}>
-                        <Icon name="place" size={metrics.iconPrimary} color={colors.primary} />
-                    </TabItemPrimaryContent>
-                </TabItemPrimary>
-                <TabItemSecundary>
-                    <Icon name="settings" size={metrics.iconSecundary} color={colors.primary} />
+                <TabItemSecundary onPress={() => this.props.navigation.navigate('Map')}>
+                        <Icon name="place" size={metrics.iconSecundary} color={colors.primary} />
+                </TabItemSecundary>
+                <TabItemSecundary onPress={() => this.props.navigation.navigate('Profile')}>
+                    <Icon name="account-circle" size={metrics.iconSecundary} color={colors.primary} />
                 </TabItemSecundary>
             </Container>
         );

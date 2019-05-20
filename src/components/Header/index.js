@@ -2,16 +2,31 @@ import React from 'react';
 
 import { SearchBar } from 'react-native-elements';
 
-import { Container, Title } from './styles';
-
-import { colors, metrics } from '~/styles';
+import { Container, Title, ViewSearchBar } from './styles';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function Header({navigation}) {
+export default function Header(props) {
     return (
-        <Container style=''>
-            <SearchBar placeholder="Type Here..." onChangeText={this.updateSearch} value="a" lightTheme="true" round="true" platform="ios"/>
+        <Container>
+            
+            { (props.withSearch) ? 
+                <SearchBar
+                onChangeText={this.updateSearch}
+                value="a"
+                placeholder={'Digite o nome da instituição'}
+                lightTheme="true"
+                round="true"
+                platform="ios"
+                containerStyle={{backgroundColor: 'transparent'}}
+                color='#fff'
+                /> : null
+            }
+
+            { (props.Title) ? 
+                <Title>{(props.Title)}</Title>
+            : null
+            }
         </Container>
     );
 }

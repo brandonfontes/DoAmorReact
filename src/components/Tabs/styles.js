@@ -14,6 +14,7 @@ export const Container = styled(Animated.View)`
     elevation: ${metrics.elevation};
    
     z-index: 5;
+    
 `;
 
 export const TabItemPrimary = styled.View`

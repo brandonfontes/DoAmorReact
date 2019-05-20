@@ -6,7 +6,3 @@ export const Container = styled.View`
   background: ${colors.background};
   justify-content: center;
 `
-
-export const ContainerCard = styled.ScrollView`
-  
-`

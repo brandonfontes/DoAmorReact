@@ -15,7 +15,7 @@ const metrics = {
   baseRadius: 5,
   tabsRadius: 20,
   iconPrimary: 60,
-  iconSecundary: 30,
+  iconSecundary: 35,
   elevation: 10,
 };
 
