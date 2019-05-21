@@ -68,7 +68,7 @@ class Map extends React.Component {
 
           </MapView>
         </View>
-        <Tabs />
+        <Tabs Active={"Map"} />
       </Container>
       
     );

@@ -5,14 +5,14 @@ import { colors, metrics } from '~/styles';
 export const Container = styled(Animated.View)`
     width: ${metrics.screenWidth};
     position: absolute;
-    bottom: 0;
+    bottom: -1;
     left: 0;
     background: ${colors.backgroundTabs};
     flex-direction: row;
     border-top-start-radius: ${metrics.tabsRadius};
     border-top-right-radius: ${metrics.tabsRadius};
     elevation: ${metrics.elevation};
-   
+    border: ${colors.gray};
     z-index: 5;
     
 `;

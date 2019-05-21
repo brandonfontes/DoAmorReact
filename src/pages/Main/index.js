@@ -10,10 +10,8 @@ export default function Main() {
   return (
     
     <Container>
-      <Header withSearch={true} />
-      <ContainerCard vertical={true}
-  showsVerticalScrollIndicator={true}
-  backgroundColor='#FF0000'>
+      <Header withSearch={true} Title={""}/>
+      <ContainerCard >
         <Card />
         <Card />
         <Card />
@@ -21,7 +19,8 @@ export default function Main() {
         <Card />
         <Card />
       </ContainerCard>
-      <Tabs />
+      <Tabs Active={"Main"} />
+      
     </Container>
     );
 };

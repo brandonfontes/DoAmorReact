@@ -13,14 +13,27 @@ class Tabs extends React.Component {
         return (
             <Container style=''>
                 <TabItemSecundary onPress={() => this.props.navigation.navigate('Main')}>
-                    <Icon name="list" size={metrics.iconSecundary} color={colors.primary} />
+                    <Icon name="list"
+                    size={metrics.iconSecundary}
+                    color={
+                        (this.props.Active == "Main") ? colors.primary : colors.gray
+                    } />
                 </TabItemSecundary>
                 <TabItemSecundary onPress={() => this.props.navigation.navigate('Map')}>
-                        <Icon name="place" size={metrics.iconSecundary} color={colors.primary} />
+                    <Icon name="place"
+                    size={metrics.iconSecundary}
+                    color={
+                        (this.props.Active == "Map") ? colors.primary : colors.gray
+                    } />
                 </TabItemSecundary>
                 <TabItemSecundary onPress={() => this.props.navigation.navigate('Profile')}>
-                    <Icon name="account-circle" size={metrics.iconSecundary} color={colors.primary} />
+                    <Icon name="account-circle"
+                    size={metrics.iconSecundary}
+                    color={
+                        (this.props.Active == "Profile") ? colors.primary : colors.gray
+                    } />
                 </TabItemSecundary>
+                
             </Container>
         );
     }

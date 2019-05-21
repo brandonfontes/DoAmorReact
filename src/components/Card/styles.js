@@ -5,7 +5,7 @@ import { colors, metrics, fonts } from '~/styles';
 export const ContainerCard = styled(Animated.View)`
     background: ${colors.backgroundTabs};
     border-radius: ${metrics.baseRadius};
-    margin: ${metrics.smallMargin}px ${metrics.baseMargin}px ;
+    margin: ${metrics.smallMargin}px ${metrics.baseMargin}px 0 ${metrics.baseMargin}px ;
     padding: ${metrics.basePadding}px ;
 
     flex-direction: row;
