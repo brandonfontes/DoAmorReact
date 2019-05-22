@@ -4,25 +4,44 @@ import Tabs from '~/components/Tabs';
 import Card from '~/components/Card';
 import Header from '~/components/Header';
 
-import instituicoes from '~/services/instituicoes';
+import { listInstitutions } from '~/services/institutions';
 
 import { Container, ContainerCard } from './styles';
 
-export default function Main() {
 
-  return (
+class Main extends React.Component {
+ 
+  constructor(props) {
+    super(props);
+    this.state = {
+      institutions: []
+    }
+  }
 
-    <Container>
-      <Header withSearch={true} Title={""}/>
-      <ContainerCard >
-      
-        { instituicoes.map((item, key)=>(
-          <Card key={item.id} Icon={item.icon} Title={item.title} Address={item.address}/>)
-        )}
+  componentDidMount() {
+    debugger;
+    this.setState({
+      institutions: listInstitutions
+    });
+  }
+  
+  render(){
+    return (
 
-      </ContainerCard>
-      <Tabs Active={"Main"} />
-      
-    </Container>
-    );
-};
+      <Container>
+        <Header withSearch={true} Title={""}/>
+        <ContainerCard >
+        
+          { this.state.institutions.map((item, key)=>(
+            <Card key={item.id} Icon={item.icon} Title={item.title} Address={item.address}/>)
+          )}
+
+        </ContainerCard>
+        <Tabs Active={"Main"} />
+        
+      </Container>
+      );
+    };
+}
+
+export default Main;

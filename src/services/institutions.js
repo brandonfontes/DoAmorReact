@@ -1,4 +1,4 @@
-const instituicoes = [
+const institutions = [
     {
         id: 1,
         title: "Lar Esperança",
@@ -57,4 +57,21 @@ const instituicoes = [
     },
   ];
 
-export default instituicoes;
+function listInstitutions(){
+    return institutions;
+}
+
+function getInstitution(id){
+    for (i = 0; i < institutions.lenght; i++){
+        if (institutions[i].id == id) {
+            return institutions[id];
+        }
+    }
+
+    return false;
+}
+
+export default {
+    listInstitutions : listInstitutions,
+    getInstitution : getInstitution
+};

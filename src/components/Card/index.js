@@ -16,7 +16,7 @@ class Card extends React.Component {
             <ContainerIconStart>
              <Icon name={(this.props.Icon)} size={metrics.iconPrimary} color={colors.primary} />
             </ContainerIconStart>
-            <ContainerText onPress={() => this.props.navigation.navigate('Instituicao', {id: this.props.key})}>
+            <ContainerText onPress={() => this.props.navigation.navigate('Institution', {id: this.props.key})}>
                 <TitleCard>{(this.props.Title)}</TitleCard>
                 <AddressCard>{(this.props.Address)}</AddressCard>
             </ContainerText>

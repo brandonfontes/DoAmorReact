@@ -6,3 +6,8 @@ export const Container = styled.View`
   background: ${colors.background};
   justify-content: center;
 `
+
+export const Text = styled.Text`
+  color: black;
+  font-size: 20px;
+`

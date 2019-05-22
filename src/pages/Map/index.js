@@ -10,7 +10,7 @@ import {
 import Tabs from '~/components/Tabs'
 import Header from '~/components/Header'
 
-import instituicoes from '~/services/instituicoes';
+import institutions from '~/services/institutions';
 
 import { Container } from './styles';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
@@ -68,7 +68,7 @@ class Map extends React.Component {
             style={styles.map}
             initialRegion={this.state.region}
           >
-          { instituicoes.map((item, key)=>(
+          { institutions.map((item, key)=>(
            <MapView.Marker
             key={item.id}
             coordinate={{latitude: item.latitude,
