@@ -7,7 +7,6 @@ export const ContainerCard = styled(Animated.View)`
     border-radius: ${metrics.baseRadius};
     margin: ${metrics.smallMargin}px ${metrics.baseMargin}px 0 ${metrics.baseMargin}px ;
     padding: ${metrics.basePadding}px ;
-
     flex-direction: row;
     justify-Content: center;
     elevation: ${metrics.elevation};
@@ -25,7 +24,7 @@ export const ContainerIconEnd = styled(Animated.View)`
     
 `
 
-export const ContainerText = styled(Animated.View)`
+export const ContainerText = styled.TouchableOpacity`
     flex: 8; 
 `;
 

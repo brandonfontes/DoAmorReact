@@ -14,22 +14,39 @@ export default function Profile() {
   return (
     
     <Container>
-      <Header />
+      <Header withSearch={false} Title={"Perfil"}/>
       <ListItem
-        key={""}
-        title={"Nome: Brandon Fontes"}
+        title={"Brandon Fontes"}
         leftIcon={{ name: 'account-circle' }}
+        bottomDivider
       />
       <ListItem
-        key={""}
-        title={"item.title"}
-        leftIcon={{ name: 'flight-takeoff' }}
+        title={"brandon-fonte@hotmail.com"}
+        leftIcon={{ name: 'email' }}
+        bottomDivider
       />
       <ListItem
-        key={""}
-        title={"item.title"}
-        leftIcon={{ name: 'flight-takeoff' }}
+        title={"09/09/1994"}
+        leftIcon={{ name: 'date-range' }}
+        bottomDivider
       />
+      <ListItem 
+        title={"Sobre"}
+        leftIcon={{ name: 'info' }}
+        chevron
+        bottomDivider
+      />
+      <ListItem 
+        title={"Sair da conta"}
+        leftIcon={{ name: 'power-settings-new' }}
+        chevron
+        bottomDivider
+      />
+
+
+
+
+
       <TitleCard>
 <Input>a </Input>
       Foto | Nome
@@ -38,6 +55,7 @@ export default function Profile() {
       Email:
       About
       </TitleCard>
+
       <Tabs Active={"Profile"}/>
     </Container>
     );

@@ -10,6 +10,8 @@ import {
 import Tabs from '~/components/Tabs'
 import Header from '~/components/Header'
 
+import instituicoes from '~/services/instituicoes';
+
 import { Container } from './styles';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 
@@ -35,15 +37,22 @@ class Map extends React.Component {
       },
       markers: [],
     };
-    var markers = [
+
+    this.markers = [
       {
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
-        title: 'Foo Place',
-        subtitle: '1234 Foo Drive'
-      }
+        id: 1,
+        latitude: -8.083520,
+        longitude: -34.949683,
+        title: 'Lar Esperanca',
+        description: '1234 Foo Drive'
+      },
+      {
+        id: 2,
+        latitude: -8.0816319,
+        longitude: -34.938355,
+        title: 'HEMOPE',
+        description: '1234 Foo Drive'
+      },
     ];
   }
 
@@ -52,19 +61,22 @@ class Map extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
+        <Header withSearch={true} Title={""}/>
         <View style={styles.container}>
           <MapView
             provider={this.props.provider}
             style={styles.map}
             initialRegion={this.state.region}
           >
+          { instituicoes.map((item, key)=>(
            <MapView.Marker
-            coordinate={{latitude: -8.083520,
-            longitude: -34.949683}}
-            title={"title"}
-            description={"description"}
-         />
+            key={item.id}
+            coordinate={{latitude: item.latitude,
+            longitude: item.longitude}}
+            title={item.title}
+            description={item.address}
+         />)
+          )}
 
           </MapView>
         </View>

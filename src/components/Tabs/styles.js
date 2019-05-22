@@ -33,7 +33,7 @@ export const TabItemPrimaryContent = styled.TouchableOpacity`
 `;
 
 export const TabItemSecundary = styled.TouchableOpacity`
-    margin: ${metrics.baseMargin}px;
+    margin: ${metrics.smallMargin}px;
     flex: 1;
     align-items: center;
     display: flex;

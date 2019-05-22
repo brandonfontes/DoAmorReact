@@ -27,6 +27,11 @@ export default function Header(props) {
                 <Title>{(props.Title)}</Title>
             : null
             }
+
+            { (props.Back) ? 
+                <Title onPress={() => this.props.navigation.goBack()}>Voltar</Title>
+                : null
+            }
         </Container>
     );
 }

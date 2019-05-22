@@ -7,7 +7,7 @@ const fonts = {
     Title: 16,
     TitleHeader: 36,
     TitleCard: 26,
-    AddressCard: 20, 
+    AddressCard: 16, 
     textTab: 10,
   };
   

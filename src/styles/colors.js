@@ -8,7 +8,7 @@ const colors = {
     success: '#3ACCE1',
     fontPrimary: '#FFF',
     gray: '#AAA',
-    background: '#DDD',
+    background: '#eee',
     backgroundCards: '#FFF',
     backgroundTabs: '#FFF',
     light: '#FFF',

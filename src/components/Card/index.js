@@ -4,23 +4,31 @@ import { ContainerCard, ContainerIconStart, ContainerIconEnd, ContainerText, Tit
 
 import { colors, metrics, fonts } from '~/styles';
 
+import { withNavigation } from 'react-navigation';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function Card() {
-    return (
-        <ContainerCard>
+
+class Card extends React.Component {
+    render(){
+        return (
+        <ContainerCard >
             <ContainerIconStart>
-             <Icon name="child-care" size={metrics.iconPrimary} color={colors.primary} />
+             <Icon name={(this.props.Icon)} size={metrics.iconPrimary} color={colors.primary} />
             </ContainerIconStart>
-            <ContainerText>
-                <TitleCard>Lar Esperança</TitleCard>
-                <AddressCard>Rua Doutor Augusto Maciel - 63 Hipódromo | Recife - PE</AddressCard>
+            <ContainerText onPress={() => this.props.navigation.navigate('Instituicao', {id: this.props.key})}>
+                <TitleCard>{(this.props.Title)}</TitleCard>
+                <AddressCard>{(this.props.Address)}</AddressCard>
             </ContainerText>
             <ContainerIconEnd>
              <Icon name="navigate-next" size={metrics.iconPrimary} color={colors.gray} />
             </ContainerIconEnd>
         </ContainerCard>
 
-        
-    );
+);
 }
+
+}
+
+
+export default withNavigation(Card);
