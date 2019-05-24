@@ -1,6 +1,4 @@
-import { forInStatement } from "@babel/types";
-
-export const institutions = [
+const institutions = [
     {
         id: 1,
         title: "Lar Esperança",
@@ -60,22 +58,14 @@ export const institutions = [
   ];
 
 export const listInstitutions = function() {
-    return [];
+    return institutions;
 };
 
 export const getInstitution = function(id) {
-    for (i = 0; i < institutions.lenght; i++){
+    for (i = 0; i < institutions.length; i++){
         if (institutions[i].id == id) {
             return institutions[id];
         }
     }
     return false;
 };
-
-
-// foi  ? ta dando erro ai p
-// agora foi.
-// ta pegando a lista, e ta clicando an instituicao e ta abrindo uma pagina,m porem em branco
-
-// nao ta trazendo...
-// vou embora ta tudo escuro ja

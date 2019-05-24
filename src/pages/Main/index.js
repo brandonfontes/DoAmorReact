@@ -4,7 +4,7 @@ import Tabs from '~/components/Tabs';
 import Card from '~/components/Card';
 import Header from '~/components/Header';
 
-import { institutions } from '~/services/institutions';
+import { listInstitutions } from '~/services/institutions';
 
 import { Container, ContainerCard } from './styles';
 
@@ -16,13 +16,11 @@ class Main extends React.Component {
     this.state = {
       institutions: []
     }
-
-    console.log("OI")
-    ;  }
+  }
 
   componentDidMount() {
     this.setState({
-      institutions: institutions
+      institutions: listInstitutions()
     });
   }
   
@@ -34,8 +32,8 @@ class Main extends React.Component {
         <ContainerCard >
         
           {             
-              institutions.map((item, key)=>(
-                <Card key={item.id} Icon={item.icon} Title={item.title} Address={item.address}/>)
+              this.state.institutions.map((item, id)=>(
+                <Card key={item.id} Id={item.id} Icon={item.icon} Title={item.title} Address={item.address}/>)
               ) 
           }
 
@@ -48,5 +46,3 @@ class Main extends React.Component {
 }
 
 export default Main;
-
-// e ai?
