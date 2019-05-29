@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { colors, metrics } from '~/styles';
+import { colors, metrics, fonts } from '~/styles';
 import { Animated } from 'react-native';
 
 export const Container = styled(Animated.View)`
@@ -9,22 +9,41 @@ export const Container = styled(Animated.View)`
   height: 10px;
 `;
 
-export const ContainerCard = styled.ScrollView.attrs({
+export const ContainerContent = styled.ScrollView.attrs({
   contentContainerStyle: { paddingTop: 70, paddingBottom: 80},
   vertical: true,
 
 })``;
 
-export const HeaderCard = styled.View`
+export const HeaderInstitution = styled.View`
   background: red;
-  height: 120px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -20px;
 `;
+
+export const TitleHeader = styled.Text`
+  color: ${colors.light};
+  font-size: 24px;
+`
 
 export const Card = styled.View`
 
 `;
 
+export const TitleCard = styled.Text`
+  font-size: ${fonts.TitleCard};
+  color: ${colors.gray};
+  flex: 1;
+  margin-bottom: 10px;
+`
+
 export const Text = styled.Text`
-  color: black;
-  font-size: 20px;
+  color: ${colors.gray};
+  font-size: 16px;
+  flex: 1;
+  padding: 5px 0;
+  
+
 `

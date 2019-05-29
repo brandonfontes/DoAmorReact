@@ -12,6 +12,9 @@ import Header from '~/components/Header'
 
 import { listInstitutions } from '~/services/institutions';
 
+
+import { withNavigation } from 'react-navigation';
+
 import { Container } from './styles';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 
@@ -39,22 +42,6 @@ class Map extends React.Component {
       markers: [],
     };
 
-    this.markers = [
-      {
-        id: 1,
-        latitude: -8.083520,
-        longitude: -34.949683,
-        title: 'Lar Esperanca',
-        description: '1234 Foo Drive'
-      },
-      {
-        id: 2,
-        latitude: -8.0816319,
-        longitude: -34.938355,
-        title: 'HEMOPE',
-        description: '1234 Foo Drive'
-      },
-    ];
   }
 
   componentDidMount() {
@@ -74,9 +61,10 @@ class Map extends React.Component {
             style={styles.map}
             initialRegion={this.state.region}
           >
-          { this.state.institutions.map((item, key)=>(
+          { this.state.institutions.map((item, id)=>(
            <MapView.Marker
             key={item.id}
+            Id={item.id}
             coordinate={{latitude: item.latitude,
             longitude: item.longitude}}
             title={item.title}
@@ -130,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Map;
+export default withNavigation(Map);

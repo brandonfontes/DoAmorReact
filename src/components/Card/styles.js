@@ -8,7 +8,7 @@ export const ContainerCard = styled(Animated.View)`
     margin: ${metrics.smallMargin}px ${metrics.baseMargin}px 0 ${metrics.baseMargin}px ;
     padding: ${metrics.basePadding}px ;
     flex-direction: row;
-    justify-Content: center;
+ 
     elevation: ${metrics.elevation};
 
     z-index:1;
