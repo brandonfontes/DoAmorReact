@@ -14,15 +14,12 @@ class Card extends React.Component {
         return (
         <ContainerCard >
             <ContainerIconStart>
-             <Icon name={(this.props.Icon)} size={metrics.iconPrimary} color={colors.primary} />
+             <Icon onPress={() => this.props.navigation.navigate('Institution', {id: this.props.Id})} name={(this.props.Icon)} size={metrics.iconPrimary} color={colors.primary} />
             </ContainerIconStart>
             <ContainerText onPress={() => this.props.navigation.navigate('Institution', {id: this.props.Id})}>
                 <TitleCard>{(this.props.Title)}</TitleCard>
                 <AddressCard>{(this.props.Address)}</AddressCard>
             </ContainerText>
-            <ContainerIconEnd>
-             <Icon name="navigate-next" size={metrics.iconPrimary} color={colors.gray} />
-            </ContainerIconEnd>
         </ContainerCard>
 
 );

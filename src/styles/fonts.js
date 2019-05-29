@@ -6,7 +6,7 @@ const fonts = {
     tiny: 10,
     Title: 16,
     TitleHeader: 36,
-    TitleCard: 26,
+    TitleCard: 20,
     AddressCard: 16, 
     textTab: 10,
   };

@@ -28,6 +28,11 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
 
 class Map extends React.Component {
+
+  static navigationOptions = {
+    header: null
+  }
+
   constructor(props) {
     super(props);
 
@@ -69,7 +74,9 @@ class Map extends React.Component {
             longitude: item.longitude}}
             title={item.title}
             description={item.address}
+            onPress={() => this.props.navigation.navigate('Institution', {id: item.id})}
          />)
+         
           )}
 
           </MapView>

@@ -10,7 +10,7 @@ export const Container = styled(Animated.View)`
 `;
 
 export const ContainerContent = styled.ScrollView.attrs({
-  contentContainerStyle: { paddingTop: 70, paddingBottom: 80},
+  contentContainerStyle: { paddingTop: 0, paddingBottom: 80},
   vertical: true,
 
 })``;
@@ -20,7 +20,7 @@ export const HeaderInstitution = styled.View`
   height: 200px;
   justify-content: center;
   align-items: center;
-  margin-bottom: -20px;
+  margin-bottom: -40px;
 `;
 
 export const TitleHeader = styled.Text`
@@ -34,13 +34,13 @@ export const Card = styled.View`
 
 export const TitleCard = styled.Text`
   font-size: ${fonts.TitleCard};
-  color: ${colors.gray};
+
   flex: 1;
   margin-bottom: 10px;
 `
 
 export const Text = styled.Text`
-  color: ${colors.gray};
+
   font-size: 16px;
   flex: 1;
   padding: 5px 0;

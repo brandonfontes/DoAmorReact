@@ -10,7 +10,12 @@ import { Container } from './styles';
 import { TitleCard } from '~/components/Card/styles';
 
 
-export default function Profile() {
+class Profile extends React.Component {
+  static navigationOptions = {
+    header: null
+  }
+
+  render(){
   return (
     
     <Container>
@@ -43,20 +48,10 @@ export default function Profile() {
         bottomDivider
       />
 
-
-
-
-
-      <TitleCard>
-<Input>a </Input>
-      Foto | Nome
-      Nome: 
-      Idade:
-      Email:
-      About
-      </TitleCard>
-
       <Tabs Active={"Profile"}/>
     </Container>
     );
-};
+  };
+}
+
+export default Profile;

@@ -12,6 +12,8 @@ const colors = {
     backgroundCards: '#FFF',
     backgroundTabs: '#FFF',
     light: '#FFF',
+    lightTransparent: 'rgba(255,255,255,0.8)',
+    darkTransparent: 'rgba(0,0,0,0.1)',
 };
 
 export default colors;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ListItem } from 'react-native-elements'
 
-import { colors, metrics } from '~/styles';
+import { colors, metrics, fonts } from '~/styles';
 
 import Tabs from '~/components/Tabs'
 import Header from '~/components/Header'
@@ -18,19 +18,36 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getInstitution } from '~/services/institutions';
 
 class Institution extends React.Component {
+    static navigationOptions = {
+        headerTintColor: '#ffffff',
+        title: 'Instituição',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            borderBottomColor: '#ffffff',
+            elevation: metrics.elevation,
+          },
+          headerTitleStyle: {
+            fontSize: 18,
+          },
+
+      }
+
+
     render(){
         const { navigation } = this.props;
         const id = navigation.getParam('id');
 
         const institution = getInstitution(id);
 
+    
+
         
     return (
       
         <Container>
-            <Header withSearch={false} Title={institution.title} Back={false}/>
+            
             <ContainerContent>
-                <HeaderInstitution >
+                <HeaderInstitution>
                     <Icon name={(institution.icon)} size={metrics.iconPrimary} color={colors.light} />
                     <TitleHeader>
                     {institution.title}
@@ -50,16 +67,16 @@ class Institution extends React.Component {
 
                 <ContainerCard style={{ flexDirection: 'column'}}>
                     <TitleCard>
-                        Endereço
+                        Quem somos
                     </TitleCard>
                     <Text>
-                        {institution.address}
+                        {institution.description}
                     </Text>
                 </ContainerCard>
 
                 <ContainerCard style={{ flexDirection: 'column'}}>
                     <TitleCard>
-                        Informações
+                        Endereço
                     </TitleCard>
                     <Text>
                         {institution.address}
@@ -71,14 +88,17 @@ class Institution extends React.Component {
                         Contato
                     </TitleCard>
                     <Text>
-                        {institution.address}
+                        {institution.tel}
+                    </Text>
+                    <Text>
+                        {institution.email}
                     </Text>
                 </ContainerCard>
 
                 
             </ContainerContent>
 
-            <Tabs Active={"Main"}/>
+            
         </Container>
         );
     };
