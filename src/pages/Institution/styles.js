@@ -15,13 +15,21 @@ export const ContainerContent = styled.ScrollView.attrs({
 
 })``;
 
-export const HeaderInstitution = styled.View`
-  background: red;
+export const HeaderInstitution = styled.ImageBackground`
   height: 200px;
   justify-content: center;
   align-items: center;
   margin-bottom: -40px;
+  elevation: ${metrics.elevation};
+  border-bottom-color: gray;
+  border-bottom-width: 1px;
 `;
+
+export const HeaderImage = styled.View`
+
+`;
+
+
 
 export const TitleHeader = styled.Text`
   color: ${colors.light};

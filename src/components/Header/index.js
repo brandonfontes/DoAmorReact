@@ -31,18 +31,25 @@ export default function Header(props) {
                 onChangeText={this.updateSearch}
                 value={search}
                 placeholder={'Digite o nome da instituição'}
-                lightTheme="true"
-                round="true"
-                platform="ios"
+                platform="android"
                 containerStyle={{backgroundColor: 'transparent', marginBottom: metrics.smallMargin, padding: 0, height: 50}}
-                color='#fff'
-                inputContainerStyle={{backgroundColor: colors.lightTransparent,}}
+                placeholderTextColor={colors.light}
+                inputContainerStyle={{backgroundColor: 'transparent'}}
+                inputStyle={{color: '#fff'}}
                 cancelButtonTitle="Cancelar"
+                searchIcon={{backgroundColor: '#fff', color: '#fff'}}
                 /> : null
             }
 
             { (props.Title) ? 
-                <Title>{(props.Title)}</Title>
+                <Title flex='1'>{(props.Title)}</Title>
+            : null
+            }
+
+            { (props.IconRight) ? 
+                <Icon name="edit" flex='1'
+                size={26}
+                color={colors.gray} />
             : null
             }
 
