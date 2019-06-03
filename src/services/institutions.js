@@ -1,3 +1,5 @@
+import firebase from 'react-native-firebase';
+
 const institutions = [
     {
         id: 1,
@@ -78,8 +80,9 @@ const institutions = [
     },
   ];
 
+
 export const listInstitutions = function() {
-    return institutions;
+    return firebase.database().ref('/institutions/').once('value');
 };
 
 export const getInstitution = function(id) {
@@ -90,3 +93,20 @@ export const getInstitution = function(id) {
     }
     return false;
 };
+
+export const setInstitution = function(institutionId, title, address, icon, latitude, longitude, description, tel, email) {
+    firebase.database().ref('institutions/' + institutionId).set({
+        id: institutionId,
+        title: title,
+        address: address,
+        icon: icon,
+        latitude:  latitude,
+        longitude: longitude,
+        description: description,
+        tel: tel,
+        email: email,
+    });
+  };
+
+
+
