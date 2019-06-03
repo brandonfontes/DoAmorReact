@@ -82,7 +82,7 @@ const institutions = [
 
 
 export const listInstitutions = function() {
-    return firebase.database().ref('/institutions/').once('value');
+    return firebase.database().ref('/institutions').once('value');
 };
 
 export const getInstitution = function(id) {

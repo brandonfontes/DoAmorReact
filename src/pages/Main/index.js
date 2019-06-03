@@ -27,8 +27,7 @@ class Main extends React.Component {
 
 
   componentDidMount() {
-    this.listInstitutions.then( function(snapshot){this.setState({institutions: snapshot});});
- 
+    listInstitutions().then( function(snapshot) {this.setState({institutions: snapshot});});
   }
   
   render(){
