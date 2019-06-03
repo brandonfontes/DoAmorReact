@@ -1,5 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { View, Text } from 'react-native';
+import firebase from 'react-native-firebase';
+
 
 import '~/config/ReactotronConfig';
 

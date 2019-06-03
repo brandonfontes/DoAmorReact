@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "283805766140",
+    "firebase_url": "https://doamor-13235.firebaseio.com",
+    "project_id": "doamor-13235",
+    "storage_bucket": "doamor-13235.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283805766140:android:45449721a406a799",
+        "android_client_info": {
+          "package_name": "com.doamorreact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283805766140-64h44inuvm6jjf30lshhuc0ba0veke0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcyS9FjtQOuPNJEdfgul5BmYZ9vPDVFgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283805766140-64h44inuvm6jjf30lshhuc0ba0veke0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

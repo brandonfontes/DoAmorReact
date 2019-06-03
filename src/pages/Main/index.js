@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { View, Text } from 'react-native';
+import firebase from 'react-native-firebase';
+
 import Tabs from '~/components/Tabs';
 import Card from '~/components/Card';
 import Header from '~/components/Header';
@@ -18,21 +21,48 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      institutions: []
+      institutions: [],
+      isAuthenticated: false,
     }
+    
   }
+
+  
 
   componentDidMount() {
     this.setState({
       institutions: listInstitutions()
     });
+    firebase.auth()
+  .signInAnonymously()
+  .then(credential => {
+    if (credential) {
+      console.log('default app user ->', credential.user.toJSON());
+    }
+  });
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) this.unsubscribe();
+  }
+
+  onUserChanged = (currentUser) => {
+    if (currentUser) {
+      console.log(currentUser.toJSON())
+    }
   }
   
   render(){
+    if (!this.state.isAuthenticated) {
+      return null;
+    }
     return (
 
       <Container>
         <Header withSearch={true} Title={""} Filter={true}/>
+        <View>
+        <Text>Welcome to my awesome app!</Text>
+      </View>
         <ContainerCard >
         
           {             
