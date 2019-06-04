@@ -4,11 +4,11 @@ import {
   View,
   Text,
   Dimensions,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 
-import Tabs from '~/components/Tabs'
-import Header from '~/components/Header'
+import Tabs from '~/components/Tabs';
+import Header from '~/components/Header';
 
 import { listInstitutions } from '~/services/institutions';
 
@@ -27,6 +27,8 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
 
+import { colors } from '~/styles';
+
 class Map extends React.Component {
 
   static navigationOptions = {
@@ -44,46 +46,97 @@ class Map extends React.Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
+      latitude: LATITUDE,
+      longitude: LONGITUDE,
       markers: [],
     };
 
   }
 
+
   componentDidMount() {
-    this.setState({
-      institutions: listInstitutions()
+    // Lista de instituicoes
+    listInstitutions().on('value', snapshot => {
+      this.setState({ institutions: snapshot.val() });
+      console.log(snapshot.val());
     });
+    // Pegar localização atual do usuario
+    // Buscar localização atual do usuario
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+      },
+      error => { alert('Falha na localização.'); },
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000
+      }
+    );
   }
-  
+
+  componentWillUnmount() {
+    this.setState({
+      institutions: [],
+    })
+  }
+
 
   render() {
     return (
       <Container>
-        <Header withSearch={true} Title={""}/>
+        <Header withSearch={true} Title={""} />
         <View style={styles.container}>
           <MapView
             provider={this.props.provider}
             style={styles.map}
             initialRegion={this.state.region}
           >
-          { this.state.institutions.map((item, id)=>(
-           <MapView.Marker
-            key={item.id}
-            Id={item.id}
-            coordinate={{latitude: item.latitude,
-            longitude: item.longitude}}
-            title={item.title}
-            description={item.address}
-            onPress={() => this.props.navigation.navigate('Institution', {id: item.id})}
-         />)
-         
-          )}
+
+            <MapView.Marker
+              key={'i1u23i23'}
+              coordinate={{
+                latitude: this.state.latitude,
+                longitude: this.state.longitude
+              }}
+            />
+
+            {
+              this.state.institutions.map((item, id) => (
+                <MapView.Marker
+                  key={item.id}
+                  pinColor={colors.primary}
+                  Id={item.id}
+                  coordinate={{
+                    latitude: item.latitude,
+                    longitude: item.longitude
+                  }}
+                // title={item.title}
+                // description={item.address}                  
+                >
+
+                  <MapView.Callout onPress={() => this.props.navigation.navigate('Institution', { id: item.id })}>
+                    <TouchableOpacity
+                      onPress={() => this.props.navigation.navigate('Institution', { id: item.id })}
+                    >
+                      <Text>{item.title}</Text>
+                      <Text>{item.address}</Text>
+                    </TouchableOpacity>
+                  </MapView.Callout>
+
+                </MapView.Marker>
+              )
+
+              )}
 
           </MapView>
         </View>
         <Tabs Active={"Map"} />
       </Container>
-      
+
     );
   }
 }

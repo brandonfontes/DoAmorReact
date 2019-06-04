@@ -20,89 +20,97 @@ import { getInstitution } from '~/services/institutions';
 import ImageInstitution from '~/assets/header-institution.jpeg'
 
 class Institution extends React.Component {
+
     static navigationOptions = {
         headerTintColor: '#ffffff',
         title: 'Instituição',
-          headerStyle: {
+        headerStyle: {
             backgroundColor: colors.primary,
             borderBottomColor: '#ffffff',
             elevation: metrics.elevation,
-          },
-          headerTitleStyle: {
+        },
+        headerTitleStyle: {
             fontSize: 18,
-          },
+        },
+    }
 
-      }
+    state = {
+        institution: {}
+    }
 
+    componentDidMount() {
+        getInstitution(this.props.navigation.getParam('id')).on('value', snap => {
+            this.setState({
+                institution: snap.val()
+            });
+        })
+    }
 
-    render(){
-        const { navigation } = this.props;
-        const id = navigation.getParam('id');
+    componentWillUnmount() {
+        this.setState({
+            institution: []
+        })
+    }
 
-        const institution = getInstitution(id);
+    render() {
+        return (
 
-    
+            <Container>
+                <ContainerContent>
+                    <HeaderInstitution source={ImageInstitution}>
+                        <HeaderImage />
+                        <Icon name={(this.state.institution.icon)} size={metrics.iconPrimary} color={colors.light} />
+                        <TitleHeader>
+                            {this.state.institution.title}
+                        </TitleHeader>
+                    </HeaderInstitution>
 
-        
-    return (
-      
-        <Container>
-            
-            <ContainerContent>
-                <HeaderInstitution source={ImageInstitution}>
-                    <HeaderImage />
-                    <Icon name={(institution.icon)} size={metrics.iconPrimary} color={colors.light} />
-                    <TitleHeader>
-                    {institution.title}
-                    </TitleHeader>
-                </HeaderInstitution>
-
-                <ContainerCard style={{ flexDirection: 'column'}}>
-                    <TitleCard>
-                        O que aceita
+                    <ContainerCard style={{ flexDirection: 'column' }}>
+                        <TitleCard>
+                            O que aceita
                     </TitleCard>
-                    <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                    <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                    <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                    <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                    <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                </ContainerCard>
+                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
+                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
+                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
+                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
+                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
+                    </ContainerCard>
 
-                <ContainerCard style={{ flexDirection: 'column'}}>
-                    <TitleCard>
-                        Quem somos
+                    <ContainerCard style={{ flexDirection: 'column' }}>
+                        <TitleCard>
+                            Quem somos
                     </TitleCard>
-                    <Text>
-                        {institution.description}
-                    </Text>
-                </ContainerCard>
+                        <Text>
+                            {this.state.institution.description}
+                        </Text>
+                    </ContainerCard>
 
-                <ContainerCard style={{ flexDirection: 'column'}}>
-                    <TitleCard>
-                        Endereço
+                    <ContainerCard style={{ flexDirection: 'column' }}>
+                        <TitleCard>
+                            Endereço
                     </TitleCard>
-                    <Text>
-                        {institution.address}
-                    </Text>
-                </ContainerCard>
+                        <Text>
+                            {this.state.institution.address}
+                        </Text>
+                    </ContainerCard>
 
-                <ContainerCard style={{ flexDirection: 'column'}}>
-                    <TitleCard>
-                        Contato
+                    <ContainerCard style={{ flexDirection: 'column' }}>
+                        <TitleCard>
+                            Contato
                     </TitleCard>
-                    <Text>
-                        {institution.tel}
-                    </Text>
-                    <Text>
-                        {institution.email}
-                    </Text>
-                </ContainerCard>
+                        <Text>
+                            {this.state.institution.tel}
+                        </Text>
+                        <Text>
+                            {this.state.institution.email}
+                        </Text>
+                    </ContainerCard>
 
-                
-            </ContainerContent>
 
-            
-        </Container>
+                </ContainerContent>
+
+
+            </Container>
         );
     };
 }
