@@ -1,28 +1,22 @@
 import styled from 'styled-components/native';
 import { colors, metrics } from '~/styles';
 
-export const Container = styled.View`
-  flex: 1;
-  background: ${colors.background};
-  padding-top: 50px;
-
-`
-
 export const ProfileContainer = styled.View`
   padding: 15px;
+  width: ${metrics.screenWidth};
+  flex-direction: column;
 `
 
-export const PhotoContainer = styled.View`
-  align-items: center;
-  margin: ${metrics.baseMargin}px;
+export const HeaderLogo = styled.ImageBackground`
+  height: 100%;
+  
+`;
 
+export const Header = styled.View`
+  height: 85px;
+  
 `
 
-export const ProfilePhoto = styled.View`
-  elevation: ${metrics.elevation}
+export const FormLogin = styled.View`
+  
 `
-
-export const ProfileInfo = styled.View`
-
-`
-

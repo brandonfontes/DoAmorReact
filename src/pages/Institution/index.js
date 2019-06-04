@@ -21,18 +21,10 @@ import ImageInstitution from '~/assets/header-institution.jpeg'
 
 class Institution extends React.Component {
 
-    static navigationOptions = {
-        headerTintColor: '#ffffff',
-        title: 'Instituição',
-        headerStyle: {
-            backgroundColor: colors.primary,
-            borderBottomColor: '#ffffff',
-            elevation: metrics.elevation,
-        },
-        headerTitleStyle: {
-            fontSize: 18,
-        },
-    }
+    static navigationOptions = ({ navigation }) => ({
+        title: `Instituição`
+      });
+    
 
     state = {
         institution: {}

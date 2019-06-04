@@ -5,7 +5,7 @@ import Tabs from '~/components/Tabs'
 import Header from '~/components/Header'
 import Input from '~/components/Input'
 
-import { Container, ProfileContainer, PhotoContainer, ProfilePhoto, ProfileInfo } from './styles';
+import { Container } from './styles';
 import { TitleCard } from '~/components/Card/styles';
 
 import AsyncStorage from '@react-native-community/async-storage';
