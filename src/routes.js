@@ -6,13 +6,13 @@ import Profile from '~/pages/Profile';
 import Institution from '~/pages/Institution';
 import Login from '~/pages/Login';
 import AuthLoadingScreen from '~/pages/AuthLoadingScreen';
+import Register from '~/pages/Register';
 
 import { colors, metrics } from '~/styles';
 // -- 
-const AppStack = createAppContainer(createStackNavigator({ Map, Main, Profile, Institution }, {
+const AppStack = createAppContainer(createStackNavigator({ Map, Main, Profile, Institution, Register }, {
     defaultNavigationOptions: {
         headerTintColor: '#ffffff',
-        title: 'Instituição',
         headerStyle: {
             backgroundColor: colors.primary,
             borderBottomColor: '#ffffff',

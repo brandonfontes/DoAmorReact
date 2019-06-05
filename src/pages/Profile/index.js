@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import InfoAccount from '~/components/InfoAccount';
 import AccountLogin from '~/components/AccountLogin';
 
+import * as firebase from "firebase";
 
 class Profile extends React.Component {
 
@@ -20,7 +21,7 @@ class Profile extends React.Component {
   });
 
   state = {
-    isLogged: false
+    isLogged: false,
   }
 
   constructor(props) {
@@ -28,15 +29,27 @@ class Profile extends React.Component {
     this._signInAsync();
   }
 
+  
   _signInAsync = async () => {
     const token = await AsyncStorage.getItem('userToken');
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        this.setState({isLogged: true});
+      } else {
+        // No user is signed in.
+        this.setState({isLogged: false});
+      }
+    })
 
     if (token) {
-      this.setState({
+      this.state({
         isLogged: true
       })
     }
   };
+
+  
 
   render() {
     return (

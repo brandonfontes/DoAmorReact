@@ -16,42 +16,47 @@ import * as firebase from "firebase";
 
 import { withNavigation } from 'react-navigation';
 
-class AccountLogin extends Component {
+ class RegisterDonor extends Component {
 
     state = {
         isLoading: false,
+        name: '',
         email: '',
-        password: ''
-    }
-
-    /**
-     * Logar usuario
-     */
-    login() {
-
-        alert(this.state.email);
-
-        this.setState({
-            isLoading: true
-        })
+        password: '',
     }
 
     constructor(props) {
         super(props);
         this.state = {
-          email: "",
-          password: ""
+            name: '',
+            email: "",
+            password: "",
         };
       }
     
     SignUp = (email, password) => {
-    try {
-        firebase.auth().createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-        console.log(error.toString(error));
-    }
+        try {
+            
+            firebase.auth().createUserWithEmailAndPassword(email, password);
+            firebase.auth().onAuthStateChanged(user => {
+                this.setState({isLoading: true});
+                alert('Usuário cadastrado com sucesso!');
+                
+                firebase.database().ref('users/' + user.uid).set({
+                    name: this.state.name,
+                    email: this.state.email,
+                    date: '01/01/1919',
+                    sex: 'N/A',
+                    type: 'donor',
+                });
+             });
+            this.props.navigation.navigate('Profile');
+        } catch (error) {
+            console.log(error.toString(error));
+        }
     };
 
+    
     render() {
         return (
             <ProfileContainer>
@@ -60,6 +65,13 @@ class AccountLogin extends Component {
                 </Header>
                 
                 <FormLogin>
+                    <Input
+                    leftIcon={<Icon name='person' size={24} color={colors.primary}/>}
+                    inputContainerStyle={defaultStyles.inputContainer}
+                    placeholder="Nome" shake={true} 
+                    
+                    onChangeText={name => this.setState({ name })}/>
+
                     <Input
                     leftIcon={<Icon name='mail' size={24} color={colors.primary}/>}
                     inputContainerStyle={defaultStyles.inputContainer}
@@ -78,30 +90,20 @@ class AccountLogin extends Component {
 
                     <Button
                     buttonStyle={defaultStyles.button.default}
-                    title="Logar" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
+                    title="Criar conta" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
 
                     <Button
                     buttonStyle={defaultStyles.button.outline}
                     titleStyle={{
                         color: colors.primary, 
                     }}
-                    onPress={() => this.props.navigation.navigate('Register', {registerPage: true})}
-                    title="Criar Conta Doador" type="outline" />
-
-                    <Button
-                    buttonStyle={defaultStyles.button.outline}
-                    titleStyle={{
-                        color: colors.primary, 
-                    }}
-                    onPress={() => this.props.navigation.navigate('Register', {registerPage: false})}
-                    title="Criar Conta Instituição" type="outline" />
+                    onPress={() => this.props.navigation.navigate('Profile')}
+                    title="Voltar" type="outline" />
                 </FormLogin>
                 
             </ProfileContainer>
+        );
+    };
+}
 
-         );
-        };
-    }
-    
-    export default withNavigation(AccountLogin);
-    
+export default withNavigation(RegisterDonor);

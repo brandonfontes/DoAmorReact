@@ -16,7 +16,7 @@ import * as firebase from "firebase";
 
 import { withNavigation } from 'react-navigation';
 
-class AccountLogin extends Component {
+ class RegisterInstitution extends Component {
 
     state = {
         isLoading: false,
@@ -24,11 +24,7 @@ class AccountLogin extends Component {
         password: ''
     }
 
-    /**
-     * Logar usuario
-     */
     login() {
-
         alert(this.state.email);
 
         this.setState({
@@ -45,12 +41,13 @@ class AccountLogin extends Component {
       }
     
     SignUp = (email, password) => {
-    try {
-        firebase.auth().createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-        console.log(error.toString(error));
-    }
+        try {
+            firebase.auth().createUserWithEmailAndPassword(email, password);
+        } catch (error) {
+            console.log(error.toString(error));
+        }
     };
+
 
     render() {
         return (
@@ -78,30 +75,20 @@ class AccountLogin extends Component {
 
                     <Button
                     buttonStyle={defaultStyles.button.default}
-                    title="Logar" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
+                    title="Criar conta" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
 
                     <Button
                     buttonStyle={defaultStyles.button.outline}
                     titleStyle={{
                         color: colors.primary, 
                     }}
-                    onPress={() => this.props.navigation.navigate('Register', {registerPage: true})}
-                    title="Criar Conta Doador" type="outline" />
-
-                    <Button
-                    buttonStyle={defaultStyles.button.outline}
-                    titleStyle={{
-                        color: colors.primary, 
-                    }}
-                    onPress={() => this.props.navigation.navigate('Register', {registerPage: false})}
-                    title="Criar Conta Instituição" type="outline" />
+                    onPress={() => this.props.navigation.navigate('Profile')}
+                    title="Voltar" type="outline" />
                 </FormLogin>
                 
             </ProfileContainer>
+        );
+    };
+}
 
-         );
-        };
-    }
-    
-    export default withNavigation(AccountLogin);
-    
+export default withNavigation(RegisterInstitution);
