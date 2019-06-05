@@ -10,14 +10,14 @@ export const ProfileContainer = styled.View`
 `
 
 export const HeaderLogo = styled.Image`
-  width: 100%;
+  width: 80%;
   resize-mode:contain;
-  justify-content: center;
+  
 `;
 
 export const Header = styled.View`
   width: 100%;
-  
+  align-items: center;
 `
 
 export const FormLogin = styled.View`

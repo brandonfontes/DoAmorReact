@@ -45,12 +45,22 @@ class AccountLogin extends Component {
       }
     
     SignUp = (email, password) => {
-    try {
-        firebase.auth().createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-        console.log(error.toString(error));
-    }
+        try {
+            firebase.auth().createUserWithEmailAndPassword(email, password);
+        } catch (error) {
+            console.log(error.toString(error));
+        }
     };
+
+    SignIn = (email, password) => {
+        try {
+            firebase.auth().signInWithEmailAndPassword(email, password);
+            this.props.navigation.navigate('Map')
+        } catch (error) {
+            console.log("Falha no");
+        }
+    }
+    
 
     render() {
         return (
@@ -78,7 +88,7 @@ class AccountLogin extends Component {
 
                     <Button
                     buttonStyle={defaultStyles.button.default}
-                    title="Logar" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
+                    title="Logar" loading={this.state.isLoading} onPress={() => this.SignIn(this.state.email, this.state.password)} />
 
                     <Button
                     buttonStyle={defaultStyles.button.outline}

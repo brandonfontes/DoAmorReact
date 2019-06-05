@@ -35,6 +35,8 @@ const defaultStyles = {
       borderRadius: 25,
       marginBottom: 15,
       height: 45,
+      marginLeft: 10,
+      marginRight: 10,
     },
     outline: {
       height: 45,
@@ -42,6 +44,8 @@ const defaultStyles = {
       borderColor: colors.primary,
       borderRadius: 25,
       marginBottom: 15,
+      marginLeft: 10,
+      marginRight: 10,
     }
 
   }

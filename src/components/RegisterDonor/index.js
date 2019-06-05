@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import { Text, View } from 'react-native';
 
-import { ProfileContainer, HeaderLogo, Header, FormLogin } from './styles';
+import { ProfileContainer, FormLogin } from './styles';
+
+import { HeaderLogo, Header } from '~/components/AccountLogin/styles';
 
 import { Button, Input } from 'react-native-elements';
 
@@ -41,7 +43,6 @@ import { withNavigation } from 'react-navigation';
             firebase.auth().onAuthStateChanged(user => {
                 this.setState({isLoading: true});
                 alert('Usuário cadastrado com sucesso!');
-                
                 firebase.database().ref('users/' + user.uid).set({
                     name: this.state.name,
                     email: this.state.email,

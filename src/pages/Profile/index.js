@@ -10,6 +10,7 @@ import { TitleCard } from '~/components/Card/styles';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import InfoAccount from '~/components/InfoAccount';
+import InfoAccountInstitution from '~/components/InfoAccountInstitution';
 import AccountLogin from '~/components/AccountLogin';
 
 import * as firebase from "firebase";
@@ -35,10 +36,10 @@ class Profile extends React.Component {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
-        this.setState({isLogged: true});
+        this.state({isLogged: true});
       } else {
         // No user is signed in.
-        this.setState({isLogged: false});
+        this.state({isLogged: false});
       }
     })
 

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import { Text, View } from 'react-native';
 
-import { ProfileContainer, HeaderLogo, Header, FormLogin } from './styles';
+import { ProfileContainer, FormLogin } from './styles';
+
+import { HeaderLogo, Header } from '~/components/AccountLogin/styles';
 
 import { Button, Input } from 'react-native-elements';
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { colors, metrics } from '~/styles';
+import { colors, metrics, fonts } from '~/styles';
 
 export const Container = styled.View`
   flex: 1;
@@ -24,5 +24,9 @@ export const ProfilePhoto = styled.View`
 
 export const ProfileInfo = styled.View`
 
+`
+
+export const Title = styled.Text`
+  font-size: ${fonts.Title}px;
 `
 
