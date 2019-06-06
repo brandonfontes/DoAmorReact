@@ -16,83 +16,53 @@ import Logo from '~/assets/logo2-verde.png';
 
 import * as firebase from "firebase";
 
+import PropTypes from 'prop-types';
+
 import { withNavigation } from 'react-navigation';
 
-class RegisterInstitution extends Component {
+class EditInstitution extends Component {
+    
     constructor(props) {
+
         super(props);
+
+        const { institutionInfo } = this.props;
 
         this.state = {
             isLoading: false,
-            name: ' ',
-            description: ' ',
-            address: 0,
-            latitude: 0,
-            longitude: ' ',
-            phone: ' ',
-            email: ' ',
-            typeInstitution: 'child',
-            donate_food: false, // Campo boleano - Alimento
-            donate_constructionMaterial: false, // Campo boleano - Material de construção
-            donate_electronic: false, // Campo boleano - Eletrônico
-            donate_clothes: false, // Campo boleano - Roupa
-            donate_musicalInstruments: false, // Campo boleano - Instrumento musical
-            donate_toy: false, // Campo boleano - Brinquedo
-            donate_personalHygiene: false, // Campo boleano - Higiene Pessoal
-            donate_book: false, // Campo boleano - Livro
-            id: '', // Id Usuário
+            name: institutionInfo.title,
+            title: institutionInfo.title,
+            description: institutionInfo.description,
+            address: institutionInfo.address,
+            latitude: institutionInfo.latitude,
+            longitude: institutionInfo.longitude,
+            phone: institutionInfo.phone,
+            email: institutionInfo.email,
+            typeInstitution: institutionInfo.typerInstitution,
+            donate_food: institutionInfo.donate_food, // Campo boleano - Alimento
+            donate_constructionMaterial: institutionInfo.donate_constructionMaterial, // Campo boleano - Material de construção
+            donate_electronic: institutionInfo.donate_electronic, // Campo boleano - Eletrônico
+            donate_clothes: institutionInfo.donate_clothes, // Campo boleano - Roupa
+            donate_musicalInstruments: institutionInfo.donate_musicalInstruments, // Campo boleano - Instrumento musical
+            donate_toy: institutionInfo.donate_toy, // Campo boleano - Brinquedo
+            donate_personalHygiene: institutionInfo.donate_personalHygiene, // Campo boleano - Higiene Pessoal
+            donate_book: institutionInfo.donate_book, // Campo boleano - Livro
+            id: institutionInfo.title, // Id Usuário
         }
     }
 
     login() {
-        alert(this.state.email);
-
         this.setState({
             isLoading: true
         })
     }
 
-    SignUp = (email, password) => {
-        this.setState({ isLoading: true });
-
-        firebase.auth().createUserWithEmailAndPassword(email, password);
-
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                firebase.database().ref('users/' + user.uid).set({
-                    name: this.state.title,
-                    type: 'institution',
-                });
-
-                firebase.database().ref('institutions/' + user.uid).set({
-                    title: this.state.title, // Nome da instituição
-                    description: this.state.description, // Descrição
-                    address: this.state.address, // Endereço manual
-                    latitude: this.state.latitude, // Latitude
-                    longitude: this.state.longitude, // Longitude
-                    phone: this.state.phone, // Telefone
-                    email: this.state.email, // Email
-                    type: this.state.typeInstitution, // Tipo de instituição
-                    donate_food: this.state.donate_food, // Alimento
-                    donate_constructionMaterial: this.state.donate_constructionMaterial, // Material de Construção
-                    donate_electronic: this.state.donate_electronic, // Eletrônico
-                    donate_clothes: this.state.donate_clothes, // Roupa
-                    donate_musicalInstruments: this.state.donate_musicalInstruments, // Instrumento Musical
-                    donate_toy: this.state.donate_toy, // Brinquedo
-                    donate_personalHygiene: this.state.donate_personalHygiene, // Higiene Pessoal
-                    donate_book: this.state.donate_book, // Livro
-                    id: user.uid, // Id Usuário
-
-                });
-
-                alert('Usuário cadastrado com sucesso!');
-                this.props.navigation.navigate('Profile');
-            }
-        });
-    };
-
+   
 
     render() {
+
+        const { institutionInfo } = this.props;
+
         return (
             <ProfileContainer>
                 <Header>
@@ -107,7 +77,7 @@ class RegisterInstitution extends Component {
                         leftIcon={<Icon name='mail' size={24} color={colors.primary} />}
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="E-mail" shake={true} keyboardType="email-address"
-
+                        value="a"
                         onChangeText={email => this.setState({ email })} />
 
                     <Input
@@ -260,4 +230,8 @@ class RegisterInstitution extends Component {
     };
 }
 
-export default withNavigation(RegisterInstitution);
+EditInstitution.propTypes = {
+    institutionInfo: PropTypes.object.isRequired
+}
+
+export default withNavigation(EditInstitution);

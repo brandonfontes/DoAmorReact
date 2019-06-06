@@ -9,6 +9,7 @@ const fonts = {
     TitleCard: 20,
     AddressCard: 16, 
     textTab: 10,
+    CheckBox: 18,
   };
   
   export default fonts;

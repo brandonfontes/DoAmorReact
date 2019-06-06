@@ -25,7 +25,7 @@ class Profile extends React.Component {
   state = {
     isLogged: false,
     user: null,
-    institution: {}
+    institution: {},
   }
 
   constructor(props) {
@@ -65,13 +65,14 @@ class Profile extends React.Component {
       if (user.val()) {
         if (user.val().type == 'institution') {
           // Buscar dados da intituicao
-          firebase.database().ref('/institution/' + id).on('value', institution => {
+          firebase.database().ref('/institutions/' + id).on('value', institution => {
             this.setState({
-              institution: institution.val()
+              institution: institution.val(),
             })
           })
         }
       }
+
     })
   }
 
@@ -80,7 +81,7 @@ class Profile extends React.Component {
    */
   _renderAccountType = () => {
     return (
-      (this.state.user.type == 'donor') ? <InfoAccount userInfo={this.state.user} /> : <InfoAccountInstitution userInfo={this.state.institution} />
+      (this.state.user.type == 'donor') ? <InfoAccount userInfo={this.state.user} /> : <InfoAccountInstitution institutionInfo={this.state.institution} />
     )
   }
 

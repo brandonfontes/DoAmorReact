@@ -22,8 +22,6 @@ class InfoAccount extends Component {
     render() {
         const { userInfo } = this.props;
 
-        console.log(userInfo);
-
         return (
             <ProfileContainer>
                 <PhotoContainer>

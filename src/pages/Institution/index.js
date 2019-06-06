@@ -30,6 +30,23 @@ class Institution extends React.Component {
         institution: {}
     }
 
+    _getIcon(type){
+        switch(type){
+          case 'child': // Criança
+            return 'child-care';
+          case 'family': // Família
+            return 'people';
+          case 'blood': // Sangue
+            return 'healing';
+          case 'shelter': // Abrigo
+            return 'home';
+          case 'deficient': // Deficiente
+            return 'accessible';
+          default: 
+            return 'home'; // Padrão
+        }
+      }
+
     componentDidMount() {
         getInstitution(this.props.navigation.getParam('id')).on('value', snap => {
             this.setState({
@@ -51,7 +68,8 @@ class Institution extends React.Component {
                 <ContainerContent>
                     <HeaderInstitution source={ImageInstitution}>
                         <HeaderImage />
-                        <Icon name={(this.state.institution.icon)} size={metrics.iconPrimary} color={colors.light} />
+                        <Icon name={(this._getIcon(this.state.institution.type))}
+                        size={metrics.iconPrimary} color={colors.light} />
                         <TitleHeader>
                             {this.state.institution.title}
                         </TitleHeader>
@@ -61,11 +79,15 @@ class Institution extends React.Component {
                         <TitleCard>
                             O que aceita
                     </TitleCard>
-                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
-                        <Text><Icon name="home" size={metrics.iconSecundary} color={colors.gray} /> Alimento </Text>
+                    {this.state.institution.donate_food && <Text> Alimento </Text>}
+                    {this.state.institution.donate_constructionMaterial && <Text> Material de Construção </Text>}
+                    {this.state.institution.donate_electronic && <Text> Eletrônico </Text>}
+                    {this.state.institution.donate_clothes && <Text> Roupa </Text>}
+                    {this.state.institution.donate_musicalInstruments && <Text> Instrumento Musical </Text>}
+                    {this.state.institution.donate_toy && <Text> Brinquedo </Text>}
+                    {this.state.institution.donate_personalHygiene && <Text> Higiene Pessoal </Text>}
+                    {this.state.institution.donate_book && <Text> Livro </Text>}
+
                     </ContainerCard>
 
                     <ContainerCard style={{ flexDirection: 'column' }}>
@@ -91,7 +113,7 @@ class Institution extends React.Component {
                             Contato
                     </TitleCard>
                         <Text>
-                            {this.state.institution.tel}
+                            {this.state.institution.phone}
                         </Text>
                         <Text>
                             {this.state.institution.email}

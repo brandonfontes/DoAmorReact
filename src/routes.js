@@ -7,10 +7,12 @@ import Institution from '~/pages/Institution';
 import Login from '~/pages/Login';
 import AuthLoadingScreen from '~/pages/AuthLoadingScreen';
 import Register from '~/pages/Register';
+import Edit from '~/pages/Edit';
+
 
 import { colors, metrics } from '~/styles';
 // -- 
-const AppStack = createAppContainer(createStackNavigator({ Map, Main, Profile, Institution, Register }, {
+const AppStack = createAppContainer(createStackNavigator({ Map, Main, Profile, Institution, Register, Edit }, {
     defaultNavigationOptions: {
         headerTintColor: '#ffffff',
         headerStyle: {

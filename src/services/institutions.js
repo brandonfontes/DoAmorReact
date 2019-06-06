@@ -30,7 +30,6 @@ export const getInstitution = function (id) {
     return firebase.database().ref('/institutions/' + id);
 };
 
-
 export const setInstitution = function (institutionId, title, address, icon, latitude, longitude, description, tel, email) {
     firebase.database().ref('institutions/' + institutionId).set({
         id: institutionId,

@@ -42,12 +42,21 @@ class Main extends React.Component {
 
   _getIcon(type){
     switch(type){
-      case 'CHILDREN':
+      case 'child': // Criança
+        return 'child-care';
+      case 'family': // Família
         return 'people';
-      default: 
+      case 'blood': // Sangue
+        return 'healing';
+      case 'shelter': // Abrigo
         return 'home';
+      case 'deficient': // Deficiente
+        return 'accessible';
+      default: 
+        return 'home'; // Padrão
     }
   }
+
 
   render() {
 
