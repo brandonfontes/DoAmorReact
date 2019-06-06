@@ -40,6 +40,15 @@ class Main extends React.Component {
     })
   }
 
+  _getIcon(type){
+    switch(type){
+      case 'CHILDREN':
+        return 'people';
+      default: 
+        return 'home';
+    }
+  }
+
   render() {
 
     return (
@@ -53,8 +62,8 @@ class Main extends React.Component {
         <ContainerCard >
 
           {
-            this.state.institutions.map((item, id) => (
-              <Card key={item.id} Id={item.id} Icon={item.icon} Title={item.title} Address={item.address} />)
+            Object.keys(this.state.institutions).map((key) => (
+              <Card key={this.state.institutions[key].id} Id={this.state.institutions[key].id} Icon={this._getIcon(this.state.institutions[key].type)} Title={this.state.institutions[key].title} Address={this.state.institutions[key].address} />)
             )
 
           }

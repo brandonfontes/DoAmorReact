@@ -18,7 +18,7 @@ import * as firebase from "firebase";
 
 import { withNavigation } from 'react-navigation';
 
- class RegisterDonor extends Component {
+class RegisterDonor extends Component {
 
     state = {
         isLoading: false,
@@ -34,74 +34,76 @@ import { withNavigation } from 'react-navigation';
             email: "",
             password: "",
         };
-      }
-    
+    }
+
     SignUp = (email, password) => {
         try {
-            
+
             firebase.auth().createUserWithEmailAndPassword(email, password);
             firebase.auth().onAuthStateChanged(user => {
-                this.setState({isLoading: true});
-                alert('Usuário cadastrado com sucesso!');
-                firebase.database().ref('users/' + user.uid).set({
-                    name: this.state.name,
-                    email: this.state.email,
-                    date: '01/01/1919',
-                    sex: 'N/A',
-                    type: 'donor',
-                });
-             });
+                if (user) {
+                    this.setState({ isLoading: true });
+                    alert('Usuário cadastrado com sucesso!');
+                    firebase.database().ref('users/' + user.uid).set({
+                        name: this.state.name,
+                        email: this.state.email,
+                        birthdate: this.state.birthdate,
+                        gender: this.state.gender,
+                        type: 'donor',
+                    });
+                }
+            });
             this.props.navigation.navigate('Profile');
         } catch (error) {
             console.log(error.toString(error));
         }
     };
 
-    
+
     render() {
         return (
             <ProfileContainer>
                 <Header>
                     <HeaderLogo source={Logo} />
                 </Header>
-                
+
                 <FormLogin>
                     <Input
-                    leftIcon={<Icon name='person' size={24} color={colors.primary}/>}
-                    inputContainerStyle={defaultStyles.inputContainer}
-                    placeholder="Nome" shake={true} 
-                    
-                    onChangeText={name => this.setState({ name })}/>
+                        leftIcon={<Icon name='person' size={24} color={colors.primary} />}
+                        inputContainerStyle={defaultStyles.inputContainer}
+                        placeholder="Nome" shake={true}
+
+                        onChangeText={name => this.setState({ name })} />
 
                     <Input
-                    leftIcon={<Icon name='mail' size={24} color={colors.primary}/>}
-                    inputContainerStyle={defaultStyles.inputContainer}
-                    placeholder="E-mail" shake={true} keyboardType="email-address"
-                    
-                    onChangeText={email => this.setState({ email })}/>
+                        leftIcon={<Icon name='mail' size={24} color={colors.primary} />}
+                        inputContainerStyle={defaultStyles.inputContainer}
+                        placeholder="E-mail" shake={true} keyboardType="email-address"
+
+                        onChangeText={email => this.setState({ email })} />
 
                     <Input
-                    leftIcon={<Icon name='lock' size={24} color={colors.primary}/>}
-                    inputContainerStyle={defaultStyles.inputContainer}
-                    placeholder="Senha" shake={true} secureTextEntry={true}
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    onChangeText={password => this.setState({ password })}  />
+                        leftIcon={<Icon name='lock' size={24} color={colors.primary} />}
+                        inputContainerStyle={defaultStyles.inputContainer}
+                        placeholder="Senha" shake={true} secureTextEntry={true}
+                        secureTextEntry={true}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        onChangeText={password => this.setState({ password })} />
 
                     <Button
-                    buttonStyle={defaultStyles.button.default}
-                    title="Criar conta" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
+                        buttonStyle={defaultStyles.button.default}
+                        title="Criar conta" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
 
                     <Button
-                    buttonStyle={defaultStyles.button.outline}
-                    titleStyle={{
-                        color: colors.primary, 
-                    }}
-                    onPress={() => this.props.navigation.navigate('Profile')}
-                    title="Voltar" type="outline" />
+                        buttonStyle={defaultStyles.button.outline}
+                        titleStyle={{
+                            color: colors.primary,
+                        }}
+                        onPress={() => this.props.navigation.navigate('Profile')}
+                        title="Voltar" type="outline" />
                 </FormLogin>
-                
+
             </ProfileContainer>
         );
     };

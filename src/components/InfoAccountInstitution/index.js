@@ -10,9 +10,19 @@ import { Container, ProfileContainer, PhotoContainer, ProfilePhoto, ProfileInfo,
 import ImageInstitution from '~/assets/header-institution.jpeg'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import firebase from 'firebase';
 
 export default class InfoAccountInstitution extends Component {
+
+    _loggout() {
+        firebase.auth().signOut().then(function () {
+            alert('Até mais, volte sempre');
+        }).catch(function (error) {
+            alert('Falha ao deslogar, tente novamente')
+        });
+    }
+
+
     render() {
         return (
             <ProfileContainer>
@@ -24,35 +34,36 @@ export default class InfoAccountInstitution extends Component {
                     </TitleHeader>
                 </HeaderInstitution>
                 <ProfileInfo>
-                <ListItem
+                    <ListItem
                         title={"Perfil da instituição"}
                         leftIcon={{ name: 'home' }}
                         chevron
-                        bottomDivider
+                        topDivider
                     />
                     <ListItem
                         title={"Editar perfil"}
                         leftIcon={{ name: 'edit' }}
                         chevron
-                        bottomDivider
+                        topDivider
                     />
                     <ListItem
                         title={"Dashboard"}
                         leftIcon={{ name: 'donut-small' }}
                         chevron
-                        bottomDivider
+                        topDivider
                     />
                     <ListItem
                         title={"Sobre"}
                         leftIcon={{ name: 'info' }}
                         chevron
-                        bottomDivider
+                        topDivider
                     />
                     <ListItem
                         title={"Sair da conta"}
                         leftIcon={{ name: 'power-settings-new' }}
                         chevron
-                        bottomDivider
+                        topDivider
+                        onPress={() => this._loggout()}
                     />
                 </ProfileInfo>
             </ProfileContainer>

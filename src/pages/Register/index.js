@@ -18,7 +18,7 @@ class Register extends React.Component {
     });
 
     state = {
-        registerPage: this.props.registerPage,
+        registerPage: this.props.navigation.getParam('registerPage'),
     }
 
     render() {
@@ -26,7 +26,7 @@ class Register extends React.Component {
 
             <Container>
                 {
-                    this.state.registerPage ? <RegisterDonor /> : <RegisterDonor />
+                    this.state.registerPage ? <RegisterDonor /> : <RegisterInstitution />
                 }
 
             </Container>

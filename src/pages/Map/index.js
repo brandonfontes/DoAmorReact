@@ -105,25 +105,24 @@ class Map extends React.Component {
             />
 
             {
-              this.state.institutions.map((item, id) => (
+              Object.keys(this.state.institutions).map((key) => (
                 <MapView.Marker
-                  key={item.id}
+                  key={this.state.institutions[key].id}
                   pinColor={colors.primary}
-                  Id={item.id}
+                  Id={this.state.institutions[key].id}
                   coordinate={{
-                    latitude: item.latitude,
-                    longitude: item.longitude
+                    latitude: this.state.institutions[key].latitude,
+                    longitude: this.state.institutions[key].longitude
                   }}
-                // title={item.title}
-                // description={item.address}                  
+                // title={this.state.institutions[key].title}
+                // description={this.state.institutions[key].address}                  
                 >
-
-                  <MapView.Callout onPress={() => this.props.navigation.navigate('Institution', { id: item.id })}>
+                  <MapView.Callout onPress={() => this.props.navigation.navigate('Institution', { id: this.state.institutions[key].id })}>
                     <TouchableOpacity
-                      onPress={() => this.props.navigation.navigate('Institution', { id: item.id })}
+                      onPress={() => this.props.navigation.navigate('Institution', { id: this.state.institutions[key].id })}
                     >
-                      <Text>{item.title}</Text>
-                      <Text>{item.address}</Text>
+                      <Text>{this.state.institutions[key].title}</Text>
+                      <Text>{this.state.institutions[key].address}</Text>
                     </TouchableOpacity>
                   </MapView.Callout>
 

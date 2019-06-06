@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
-
 import { View } from 'react-native';
 import { ListItem } from 'react-native-elements'
-
 import { colors, metrics } from '~/styles';
-
 import { Container, ProfileContainer, PhotoContainer, ProfilePhoto, ProfileInfo, Title } from './styles';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import PropTypes from 'prop-types';
 
-export default class InfoAccount extends Component {
+import firebase from 'firebase';
+
+class InfoAccount extends Component {
+
+
+    _loggout() {
+        firebase.auth().signOut().then(function () {
+            alert('Até mais, volte sempre');
+        }).catch(function (error) {
+            alert('Falha ao deslogar, tente novamente')
+        });
+    }
+
     render() {
+        const { userInfo } = this.props;
+
+        console.log(userInfo);
+
         return (
             <ProfileContainer>
                 <PhotoContainer>
@@ -19,39 +32,54 @@ export default class InfoAccount extends Component {
                             size={160}
                             color={colors.primary} />
                     </ProfilePhoto>
-                    <Title>Brandon Fontes</Title>
+                    <Title>{userInfo.name}</Title>
                 </PhotoContainer>
                 <ProfileInfo>
                     <ListItem
-                        title={"brandon-fonte@hotmail.com"}
+                        title={userInfo.email}
                         leftIcon={{ name: 'email' }}
-                        bottomDivider
+                        topDivider
                     />
                     <ListItem
-                        title={"09/09/1994"}
+                        title={userInfo.birthdate}
                         leftIcon={{ name: 'date-range' }}
-                        bottomDivider
+                        topDivider
                     />
+
+                    <ListItem
+                        title={userInfo.gender}
+                        leftIcon={{ name: 'people' }}
+                        topDivider
+                    />
+
                     <ListItem
                         title={"Editar Perfil"}
                         leftIcon={{ name: 'edit' }}
                         chevron
-                        bottomDivider
+                        topDivider
                     />
+
                     <ListItem
                         title={"Sobre"}
                         leftIcon={{ name: 'info' }}
                         chevron
-                        bottomDivider
+                        topDivider
                     />
                     <ListItem
                         title={"Sair da conta"}
                         leftIcon={{ name: 'power-settings-new' }}
                         chevron
-                        bottomDivider
+                        topDivider
+                        onPress={() => this._loggout()}
                     />
                 </ProfileInfo>
             </ProfileContainer>
         )
     }
 }
+
+InfoAccount.propTypes = {
+    userInfo: PropTypes.object.isRequired
+}
+
+export default InfoAccount;
