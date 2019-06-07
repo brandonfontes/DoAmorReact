@@ -42,7 +42,7 @@ class Edit extends React.Component {
         return (
 
             <Container>
-
+            <Text>{this.state.institution.latitude}</Text>
                 <EditInstitution />
 
             </Container>

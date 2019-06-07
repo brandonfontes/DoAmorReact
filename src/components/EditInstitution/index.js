@@ -93,39 +93,38 @@ class EditInstitution extends Component {
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Nome da instituição"
                         defaultValue={this.state.institution.title}
-                        onChangeText={title => this.setState({ ...this.state.institution, title: title })} />
+                        onChangeText={title => this.setState(prevState => ({ institution: { ...prevState.institution, title: title } }))} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Sobre a instituição"
                         defaultValue={this.state.institution.description}
-                        onChangeText={description => this.setState({ ...this.state.institution, description })} />
+                        onChangeText={description => this.setState(prevState => ({ institution: { ...prevState.institution, description: description } }))} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Endereço da instituição"
                         defaultValue={this.state.institution.address}
-                        onChangeText={address => this.setState({ ...this.state.institution, address })} />
+                        onChangeText={address => this.setState(prevState => ({ institution: { ...prevState.institution, address: address } }))} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Geolocalização da instituição - latitude"
                         defaultValue={this.state.institution.latitude}
-                        onChangeText={latitude => this.setState({ ...this.state.institution, latitude })} />
+                        onChangeText={latitude => this.setState(prevState => ({ institution: { ...prevState.institution, latitude: latitude } }))} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Geolocalização da instituição - longitude"
                         defaultValue={this.state.institution.longitude}
-                        onChangeText={longitude => this.setState({ ...this.state.institution, longitude })} />
-
+                        onChangeText={longitude => this.setState(prevState => ({ institution: { ...prevState.institution, longitude: longitude } }))} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Telefone da instituição"
                         defaultValue={this.state.institution.phone}
                         keyboardType={'numeric'}
-                        onChangeText={phone => this.setState({ ...this.state.institution, phone })} />
+                        onChangeText={phone => this.setState(prevState => ({ institution: { ...prevState.institution, phone: phone } }))} />
 
                     <ContainerTitle>
                         <Title> Aceitamos doação de: </Title>
@@ -148,7 +147,8 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_constructionMaterial}
-                        onPress={() => this.setState({ donate_constructionMaterial: !this.state.institution.donate_constructionMaterial })}
+                        onPress={donate_constructionMaterial => this.setState(prevState => ({ institution: { ...prevState.institution, donate_constructionMaterial: donate_constructionMaterial } }))}
+
                     />
 
                     <CheckBox
