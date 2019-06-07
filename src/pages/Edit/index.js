@@ -2,9 +2,11 @@ import React from 'react';
 
 import { colors, metrics, fonts } from '~/styles';
 
-import { Container } from './styles';
+import { Container, Text } from './styles';
 
 import { withNavigation } from 'react-navigation';
+
+import { getInstitution } from '~/services/institutions';
 
 //import EditDonor from '~/components/EditDonor';
 import EditInstitution from '~/components/EditInstitution';
@@ -18,16 +20,30 @@ class Edit extends React.Component {
     });
 
     state = {
-        editPage: this.props.navigation.getParam('editPage'),
+        institution: {}
+    }
+
+
+    componentDidMount() {
+        getInstitution(this.props.navigation.getParam('id')).on('value', snap => {
+            this.setState({
+                institution: snap.val()
+            });
+        })
+    }
+
+    componentWillUnmount() {
+        this.setState({
+            institution: {}
+        })
     }
 
     render() {
         return (
 
             <Container>
-                {
-                    this.state.editPage ? <EditInstitution institutionInfo={this.state.institution} /> : <EditInstitution institutionInfo={this.state.institution} />
-                }
+
+                <EditInstitution />
 
             </Container>
         );

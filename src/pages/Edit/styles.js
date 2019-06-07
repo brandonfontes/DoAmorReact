@@ -8,3 +8,7 @@ export const Container = styled(Animated.View)`
   justify-content: center;
   height: 10px;
 `;
+
+export const Text = styled.Text`
+
+`

@@ -111,8 +111,8 @@ class Map extends React.Component {
                   pinColor={colors.primary}
                   Id={this.state.institutions[key].id}
                   coordinate={{
-                    latitude: this.state.institutions[key].latitude,
-                    longitude: this.state.institutions[key].longitude
+                    latitude: parseFloat(this.state.institutions[key].latitude),
+                    longitude: parseFloat(this.state.institutions[key].longitude)
                   }}
                 // title={this.state.institutions[key].title}
                 // description={this.state.institutions[key].address}                  

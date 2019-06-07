@@ -26,9 +26,9 @@ class RegisterInstitution extends Component {
             isLoading: false,
             name: ' ',
             description: ' ',
-            address: 0,
+            address: '',
             latitude: 0,
-            longitude: ' ',
+            longitude: 0,
             phone: ' ',
             email: ' ',
             typeInstitution: 'child',
@@ -68,8 +68,8 @@ class RegisterInstitution extends Component {
                     title: this.state.title, // Nome da instituição
                     description: this.state.description, // Descrição
                     address: this.state.address, // Endereço manual
-                    latitude: this.state.latitude, // Latitude
-                    longitude: this.state.longitude, // Longitude
+                    latitude: parseFloat(this.state.latitude), // Latitude
+                    longitude: parseFloat(this.state.longitude), // Longitude
                     phone: this.state.phone, // Telefone
                     email: this.state.email, // Email
                     type: this.state.typeInstitution, // Tipo de instituição
@@ -154,6 +154,7 @@ class RegisterInstitution extends Component {
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Telefone da instituição"
+                        keyboardType={'numeric'}
                         onChangeText={phone => this.setState({ phone })} />
 
                     <ContainerTitle>

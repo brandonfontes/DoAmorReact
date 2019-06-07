@@ -14,6 +14,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Logo from '~/assets/logo2-verde.png';
 
+import { getInstitution } from '~/services/institutions';
+
 import * as firebase from "firebase";
 
 import PropTypes from 'prop-types';
@@ -22,34 +24,26 @@ import { withNavigation } from 'react-navigation';
 
 class EditInstitution extends Component {
     
-    constructor(props) {
 
-        super(props);
 
-        const { institutionInfo } = this.props;
-
-        this.state = {
-            isLoading: false,
-            name: institutionInfo.title,
-            title: institutionInfo.title,
-            description: institutionInfo.description,
-            address: institutionInfo.address,
-            latitude: institutionInfo.latitude,
-            longitude: institutionInfo.longitude,
-            phone: institutionInfo.phone,
-            email: institutionInfo.email,
-            typeInstitution: institutionInfo.typerInstitution,
-            donate_food: institutionInfo.donate_food, // Campo boleano - Alimento
-            donate_constructionMaterial: institutionInfo.donate_constructionMaterial, // Campo boleano - Material de construção
-            donate_electronic: institutionInfo.donate_electronic, // Campo boleano - Eletrônico
-            donate_clothes: institutionInfo.donate_clothes, // Campo boleano - Roupa
-            donate_musicalInstruments: institutionInfo.donate_musicalInstruments, // Campo boleano - Instrumento musical
-            donate_toy: institutionInfo.donate_toy, // Campo boleano - Brinquedo
-            donate_personalHygiene: institutionInfo.donate_personalHygiene, // Campo boleano - Higiene Pessoal
-            donate_book: institutionInfo.donate_book, // Campo boleano - Livro
-            id: institutionInfo.title, // Id Usuário
-        }
+    componentDidMount() {
+        getInstitution(this.props.navigation.getParam('id')).on('value', snap => {
+            this.setState({
+                institution: snap.val()
+            });
+        })
     }
+
+    componentWillUnmount() {
+        this.setState({
+            institution: {}
+        })
+    }
+        state = {
+            isLoading: false,
+            institution: {},
+        };
+
 
     login() {
         this.setState({
@@ -57,7 +51,15 @@ class EditInstitution extends Component {
         })
     }
 
-   
+    Update = () => {
+        this.setState({ isLoading: true });
+
+        firebase.database().ref('institutions/' + this.state.institution.id).update(this.state.institution)
+
+        alert('Instituição atualizada com sucesso!');
+        this.props.navigation.navigate('Profile');
+
+    };
 
     render() {
 
@@ -77,17 +79,9 @@ class EditInstitution extends Component {
                         leftIcon={<Icon name='mail' size={24} color={colors.primary} />}
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="E-mail" shake={true} keyboardType="email-address"
-                        value="a"
-                        onChangeText={email => this.setState({ email })} />
-
-                    <Input
-                        leftIcon={<Icon name='lock' size={24} color={colors.primary} />}
-                        inputContainerStyle={defaultStyles.inputContainer}
-                        placeholder="Senha" shake={true} secureTextEntry={true}
-                        secureTextEntry={true}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        onChangeText={password => this.setState({ password })} />
+                        defaultValue={this.state.institution.email}
+                        disabled={true}
+                        />
 
                     {/* dados da instituição */}
 
@@ -98,33 +92,40 @@ class EditInstitution extends Component {
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Nome da instituição"
-                        onChangeText={title => this.setState({ title })} />
+                        defaultValue={this.state.institution.title}
+                        onChangeText={title => this.setState({ ...this.state.institution, title: title })} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Sobre a instituição"
-                        onChangeText={description => this.setState({ description })} />
+                        defaultValue={this.state.institution.description}
+                        onChangeText={description => this.setState({ ...this.state.institution, description })} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Endereço da instituição"
-                        onChangeText={address => this.setState({ address })} />
+                        defaultValue={this.state.institution.address}
+                        onChangeText={address => this.setState({ ...this.state.institution, address })} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Geolocalização da instituição - latitude"
-                        onChangeText={latitude => this.setState({ latitude })} />
+                        defaultValue={this.state.institution.latitude}
+                        onChangeText={latitude => this.setState({ ...this.state.institution, latitude })} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Geolocalização da instituição - longitude"
-                        onChangeText={longitude => this.setState({ longitude })} />
+                        defaultValue={this.state.institution.longitude}
+                        onChangeText={longitude => this.setState({ ...this.state.institution, longitude })} />
 
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Telefone da instituição"
-                        onChangeText={phone => this.setState({ phone })} />
+                        defaultValue={this.state.institution.phone}
+                        keyboardType={'numeric'}
+                        onChangeText={phone => this.setState({ ...this.state.institution, phone })} />
 
                     <ContainerTitle>
                         <Title> Aceitamos doação de: </Title>
@@ -136,8 +137,8 @@ class EditInstitution extends Component {
                         title='Alimento'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_food}
-                        onPress={() => this.setState({ donate_food: !this.state.donate_food })}
+                        checked={this.state.institution.donate_food}
+                        onPress={() => this.setState({ ...this.state.institution, donate_food: !this.state.institution.donate_food })}
                     />
 
                     <CheckBox
@@ -146,8 +147,8 @@ class EditInstitution extends Component {
                         title='Material de Construção'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_constructionMaterial}
-                        onPress={() => this.setState({ donate_constructionMaterial: !this.state.donate_constructionMaterial })}
+                        checked={this.state.institution.donate_constructionMaterial}
+                        onPress={() => this.setState({ donate_constructionMaterial: !this.state.institution.donate_constructionMaterial })}
                     />
 
                     <CheckBox
@@ -156,8 +157,8 @@ class EditInstitution extends Component {
                         title='Eletrônico'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_electronic}
-                        onPress={() => this.setState({ donate_electronic: !this.state.donate_electronic })}
+                        checked={this.state.institution.donate_electronic}
+                        onPress={() => this.setState({ donate_electronic: !this.state.institution.donate_electronic })}
                     />
 
                     <CheckBox
@@ -166,8 +167,8 @@ class EditInstitution extends Component {
                         title='Roupa'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_clothes}
-                        onPress={() => this.setState({ donate_clothes: !this.state.donate_clothes })}
+                        checked={this.state.institution.donate_clothes}
+                        onPress={() => this.setState({ donate_clothes: !this.state.institution.donate_clothes })}
                     />
 
                     <CheckBox
@@ -176,8 +177,8 @@ class EditInstitution extends Component {
                         title='Instrumento Musical'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_musicalInstruments}
-                        onPress={() => this.setState({ donate_musicalInstruments: !this.state.donate_musicalInstruments })}
+                        checked={this.state.institution.donate_musicalInstruments}
+                        onPress={() => this.setState({ donate_musicalInstruments: !this.state.institution.donate_musicalInstruments })}
                     />
 
                     <CheckBox
@@ -186,8 +187,8 @@ class EditInstitution extends Component {
                         title='Brinquedo'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_toy}
-                        onPress={() => this.setState({ donate_toy: !this.state.donate_toy })}
+                        checked={this.state.institution.donate_toy}
+                        onPress={() => this.setState({ donate_toy: !this.state.institution.donate_toy })}
                     />
 
                     <CheckBox
@@ -196,8 +197,8 @@ class EditInstitution extends Component {
                         title='Higiene Pessoal'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_personalHygiene}
-                        onPress={() => this.setState({ donate_personalHygiene: !this.state.donate_personalHygiene })}
+                        checked={this.state.institution.donate_personalHygiene}
+                        onPress={() => this.setState({ donate_personalHygiene: !this.state.institution.donate_personalHygiene })}
                     />
 
                     <CheckBox
@@ -206,14 +207,14 @@ class EditInstitution extends Component {
                         title='Livro'
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
-                        checked={this.state.donate_book}
-                        onPress={() => this.setState({ donate_book: !this.state.donate_book })}
+                        checked={this.state.institution.donate_book}
+                        onPress={() => this.setState({ donate_book: !this.state.institution.donate_book })}
                     />
 
 
                     <Button
                         buttonStyle={defaultStyles.button.default}
-                        title="Criar conta" loading={this.state.isLoading} onPress={() => this.SignUp(this.state.email, this.state.password)} />
+                        title="Atualizar" loading={this.state.isLoading} onPress={() => this.Update()} />
 
                     <Button
                         buttonStyle={defaultStyles.button.outline}
