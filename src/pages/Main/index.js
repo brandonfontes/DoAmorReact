@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import firebase from 'react-native-firebase';
 
 import Tabs from '~/components/Tabs';
@@ -11,7 +11,7 @@ import { listInstitutions, setInstitution } from '~/services/institutions';
 
 import Loading from '~/components/Loading';
 
-import { Container, ContainerCard } from './styles';
+import { Container, ContainerCard, ContainerNoItems, Text } from './styles';
 
 class Main extends React.Component {
 
@@ -128,7 +128,7 @@ class Main extends React.Component {
           }
 
           {
-             Object.keys(this.state.institutions).length == 0 && <Text>Não temos nada!</Text>
+             Object.keys(this.state.institutions).length == 0 && <ContainerNoItems><Text>Não temos nada :(</Text></ContainerNoItems>
           }
 
         </ContainerCard>

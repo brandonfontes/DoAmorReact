@@ -26,7 +26,7 @@ export const Title = styled.Text`
 export const ViewSearchBar = styled.View``;
 
 export const ContainerFilter = styled.ScrollView.attrs({
-    contentContainerStyle: { paddingTop: 0, paddingBottom: 0},
+    contentContainerStyle: { paddingTop: 0, paddingBottom: 0, paddingRight: metrics.basePadding},
     horizontal: true,
     showsHorizontalScrollIndicator: false,
   })`
@@ -50,3 +50,4 @@ export const TitleFilter = styled.TouchableOpacity`
     background: rgba(0,0,0,0);
 
 `;
+

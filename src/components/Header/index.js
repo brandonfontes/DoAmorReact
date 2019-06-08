@@ -90,13 +90,13 @@ class Header extends React.Component {
                 { (this.props.Filter) ? 
                     <ContainerFilter>
                         <CardFilter active={this.state.filterChoice == 'donate_food' ? true : false}>
-                            <TitleFilter onPress={() => this.setFilter('donate_food')}  ><Text>Comida</Text></TitleFilter>
+                            <TitleFilter onPress={() => this.setFilter('donate_food')}  ><Text>Alimento</Text></TitleFilter>
                         </CardFilter>
                         <CardFilter active={this.state.filterChoice == 'donate_book' ? true : false}>
                             <TitleFilter onPress={() => this.setFilter('donate_book')} ><Text>Livros</Text></TitleFilter>
                         </CardFilter>
-                        <CardFilter active={this.state.filterChoice == 'donate_eletronic' ? true : false}>
-                            <TitleFilter onPress={() => this.setFilter('donate_eletronic')} ><Text>Eletrônico</Text></TitleFilter>
+                        <CardFilter active={this.state.filterChoice == 'donate_electronic' ? true : false}>
+                            <TitleFilter onPress={() => this.setFilter('donate_electronic')} ><Text>Eletrônico</Text></TitleFilter>
                         </CardFilter>
                         <CardFilter active={this.state.filterChoice == 'donate_clothes' ? true : false}>
                             <TitleFilter onPress={() => this.setFilter('donate_clothes')} ><Text>Roupa</Text></TitleFilter>

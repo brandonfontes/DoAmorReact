@@ -1,12 +1,15 @@
 import styled from 'styled-components/native';
 import { colors, metrics } from '~/styles';
 
-export const ProfileContainer = styled.ScrollView`
+export const ProfileContainer = styled.ScrollView.attrs({
+  contentContainerStyle: { paddingBottom: 80},
+  vertical: true,
+
+})`
   padding: 15px;
   width: ${metrics.screenWidth};
   flex-direction: column;
-
-`
+`;
 
 export const HeaderLogo = styled.Image`
   width: 80%;
