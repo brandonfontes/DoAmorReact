@@ -54,7 +54,7 @@ class Map extends React.Component {
   }
 
 
-  componentDidMount() {
+  _loadInfo() {
     // Lista de instituicoes
     listInstitutions().on('value', snapshot => {
       this.setState({ institutions: snapshot.val() });
@@ -78,17 +78,67 @@ class Map extends React.Component {
     );
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
+    this._loadInfo();
+  }
+
+  componentWillUnmount(){
     this.setState({
       institutions: [],
     })
+  }
+
+  _loadByfilterDonation(typeDonation){
+    if(typeDonation == null){
+      this._loadInfo()
+    }else{
+      listInstitutions().orderByChild(typeDonation).equalTo(true).on('value', snapshot => {
+        if(snapshot.val()){
+          this.setState({
+            institutions: snapshot.val(),
+            isLoading: false
+          });
+        }else{
+          this.setState({
+            institutions: {},
+            isLoading: false
+          });
+        }
+       
+      });
+    }
+   
+  }
+
+
+  _loadBySearch(title){
+    if(title == null){
+      this._loadInfo()
+    }else{
+      listInstitutions().orderByChild('title').startAt(title).on('value', snapshot => {
+        if(snapshot.val()){
+          this.setState({
+            institutions: snapshot.val(),
+            isLoading: false
+          });
+        }else{
+          this.setState({
+            institutions: {},
+            isLoading: false
+          });
+        }
+       
+      });
+    }
+   
   }
 
 
   render() {
     return (
       <Container>
-        <Header withSearch={true} Title={""} />
+        <Header withSearch={true} Title={""} Filter={true} filterFunction={this._loadByfilterDonation.bind(this)} searchFunction={this._loadBySearch.bind(this)}/>
+      
         <View style={styles.container}>
           <MapView
             provider={this.props.provider}
@@ -97,7 +147,7 @@ class Map extends React.Component {
           >
 
             <MapView.Marker
-              key={'i1u23i23'}
+              key={''}
               coordinate={{
                 latitude: this.state.latitude,
                 longitude: this.state.longitude
@@ -117,6 +167,7 @@ class Map extends React.Component {
                 // title={this.state.institutions[key].title}
                 // description={this.state.institutions[key].address}                  
                 >
+                
                   <MapView.Callout onPress={() => this.props.navigation.navigate('Institution', { id: this.state.institutions[key].id })}>
                     <TouchableOpacity
                       onPress={() => this.props.navigation.navigate('Institution', { id: this.state.institutions[key].id })}

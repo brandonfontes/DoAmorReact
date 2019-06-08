@@ -5,6 +5,7 @@ import { colors, metrics } from '~/styles';
 import { Container, ProfileContainer, PhotoContainer, ProfilePhoto, ProfileInfo, Title } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
+import { withNavigation } from 'react-navigation';
 
 import firebase from 'firebase';
 
@@ -55,6 +56,7 @@ class InfoAccount extends Component {
                         leftIcon={{ name: 'edit' }}
                         chevron
                         topDivider
+                        onPress={() => this.props.navigation.navigate('Edit', {id: userInfo.id})}
                     />
 
                     <ListItem
@@ -62,6 +64,7 @@ class InfoAccount extends Component {
                         leftIcon={{ name: 'info' }}
                         chevron
                         topDivider
+                        onPress={() => this.props.navigation.navigate('About')}
                     />
                     <ListItem
                         title={"Sair da conta"}
@@ -80,4 +83,4 @@ InfoAccount.propTypes = {
     userInfo: PropTypes.object.isRequired
 }
 
-export default InfoAccount;
+export default withNavigation(InfoAccount);

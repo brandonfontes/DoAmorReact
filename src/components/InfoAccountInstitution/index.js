@@ -54,16 +54,11 @@ class InfoAccountInstitution extends Component {
                         onPress={() => this.props.navigation.navigate('Edit', {id: institutionInfo.id})}
                     />
                     <ListItem
-                        title={"Dashboard"}
-                        leftIcon={{ name: 'donut-small' }}
-                        chevron
-                        topDivider
-                    />
-                    <ListItem
                         title={"Sobre"}
                         leftIcon={{ name: 'info' }}
                         chevron
                         topDivider
+                        onPress={() => this.props.navigation.navigate('About')}
                     />
                     <ListItem
                         title={"Sair da conta"}

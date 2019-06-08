@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Text, View } from 'react-native';
+import { Text, View , Picker} from 'react-native';
 
 import { ProfileContainer, FormLogin, ContainerTitle, Title } from './styles';
 
@@ -39,10 +39,11 @@ class EditInstitution extends Component {
             institution: {}
         })
     }
-        state = {
-            isLoading: false,
-            institution: {},
-        };
+    
+    state = {
+        isLoading: false,
+        institution: {},
+    };
 
 
     login() {
@@ -63,7 +64,7 @@ class EditInstitution extends Component {
 
     render() {
 
-        const { institutionInfo } = this.props;
+        
 
         return (
             <ProfileContainer>
@@ -110,13 +111,13 @@ class EditInstitution extends Component {
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Geolocalização da instituição - latitude"
-                        defaultValue={this.state.institution.latitude}
+                        defaultValue={' ' + this.state.institution.latitude}
                         onChangeText={latitude => this.setState(prevState => ({ institution: { ...prevState.institution, latitude: latitude } }))} />
 
                     <Input
                         inputContainerStyle={defaultStyles.inputContainer}
                         placeholder="Geolocalização da instituição - longitude"
-                        defaultValue={this.state.institution.longitude}
+                        defaultValue={' ' + this.state.institution.longitude}
                         onChangeText={longitude => this.setState(prevState => ({ institution: { ...prevState.institution, longitude: longitude } }))} />
 
                     <Input
@@ -125,6 +126,29 @@ class EditInstitution extends Component {
                         defaultValue={this.state.institution.phone}
                         keyboardType={'numeric'}
                         onChangeText={phone => this.setState(prevState => ({ institution: { ...prevState.institution, phone: phone } }))} />
+
+                
+                    <Picker
+                        style={defaultStyles.inputDefault}
+                        selectedValue={this.state.institution.type}
+                        onValueChange={(itemValue, itemIndex) => 
+                            this.setState(
+                                prevState => (
+                                    { 
+                                        institution: { 
+                                            ...prevState.institution, type: itemValue 
+                                        } 
+                                    }
+                                )
+                            )
+                        }>
+
+                        <Picker.Item label="Crianças" value="child" />
+                        <Picker.Item label="Familia" value="family" />
+                        <Picker.Item label="Sangue" value="blood" />
+                        <Picker.Item label="Abrigo" value="shelter" />
+                        <Picker.Item label="Pessoas com deficiencia" value="deficient" />
+                    </Picker>
 
                     <ContainerTitle>
                         <Title> Aceitamos doação de: </Title>
@@ -137,7 +161,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_food}
-                        onPress={() => this.setState({ ...this.state.institution, donate_food: !this.state.institution.donate_food })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_food: !this.state.institution.donate_food
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -147,8 +180,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_constructionMaterial}
-                        onPress={donate_constructionMaterial => this.setState(prevState => ({ institution: { ...prevState.institution, donate_constructionMaterial: donate_constructionMaterial } }))}
-
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_constructionMaterial: !this.state.institution.donate_constructionMaterial
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -158,7 +199,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_electronic}
-                        onPress={() => this.setState({ donate_electronic: !this.state.institution.donate_electronic })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_electronic: !this.state.institution.donate_electronic
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -168,7 +218,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_clothes}
-                        onPress={() => this.setState({ donate_clothes: !this.state.institution.donate_clothes })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_clothes: !this.state.institution.donate_clothes
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -178,7 +237,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_musicalInstruments}
-                        onPress={() => this.setState({ donate_musicalInstruments: !this.state.institution.donate_musicalInstruments })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_musicalInstruments: !this.state.institution.donate_musicalInstruments
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -188,7 +256,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_toy}
-                        onPress={() => this.setState({ donate_toy: !this.state.institution.donate_toy })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_toy: !this.state.institution.donate_toy
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -198,7 +275,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_personalHygiene}
-                        onPress={() => this.setState({ donate_personalHygiene: !this.state.institution.donate_personalHygiene })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_personalHygiene: !this.state.institution.donate_personalHygiene
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
                     <CheckBox
@@ -208,7 +294,16 @@ class EditInstitution extends Component {
                         textStyle={{fontSize: fonts.CheckBox, color: 'gray', fontWeight: 'normal'}}
                         containerStyle={{backgroundColor: 'transparent'}}
                         checked={this.state.institution.donate_book}
-                        onPress={() => this.setState({ donate_book: !this.state.institution.donate_book })}
+                        onPress={() =>
+                            this.setState(
+                                prevState => (
+                                    {
+                                        institution: {
+                                            ...prevState.institution, donate_book: !this.state.institution.donate_book
+                                        }
+                                    }
+                                )
+                            )}
                     />
 
 
@@ -231,8 +326,5 @@ class EditInstitution extends Component {
     };
 }
 
-EditInstitution.propTypes = {
-    institutionInfo: PropTypes.object.isRequired
-}
 
 export default withNavigation(EditInstitution);

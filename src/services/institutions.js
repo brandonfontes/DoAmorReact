@@ -45,4 +45,11 @@ export const setInstitution = function (institutionId, title, address, icon, lat
 };
 
 
-
+/**
+ * Um usuário especifica
+ * @param int ID - identificador da instituicao
+ * @return Promisse firebase
+ */
+export const getUser = function (id) {
+    return firebase.database().ref('/users/' + id);
+};

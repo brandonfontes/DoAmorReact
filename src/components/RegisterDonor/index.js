@@ -24,15 +24,21 @@ class RegisterDonor extends Component {
         isLoading: false,
         name: '',
         email: '',
-        password: '',
+        birthdate: '',
+        gender: '',
+        id: '',
+
     }
 
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            email: "",
-            password: "",
+            email: '',
+            birthdate: '',
+            gender: '',
+            id: '',
+            
         };
     }
 
@@ -50,6 +56,7 @@ class RegisterDonor extends Component {
                         birthdate: this.state.birthdate,
                         gender: this.state.gender,
                         type: 'donor',
+                        id: user.uid,
                     });
                 }
             });

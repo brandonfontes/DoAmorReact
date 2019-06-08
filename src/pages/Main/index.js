@@ -24,13 +24,8 @@ class Main extends React.Component {
     isLoading: true
   }
 
-  componentDidMount() {
-    listInstitutions().on('value', snapshot => {
-      this.setState({
-        institutions: snapshot.val(),
-        isLoading: false
-      });
-    });
+  componentWillMount() {
+    this._loadInfo();
   }
 
   componentWillUnmount(){
@@ -38,6 +33,16 @@ class Main extends React.Component {
       institutions: [],
       isLoading: true
     })
+  }
+
+  // Carregar informacoes
+  _loadInfo(){
+    listInstitutions().on('value', snapshot => {
+      this.setState({
+        institutions: snapshot.val(),
+        isLoading: false
+      });
+    });
   }
 
   _getIcon(type){
@@ -57,17 +62,58 @@ class Main extends React.Component {
     }
   }
 
+  _loadByfilterDonation(typeDonation){
+    if(typeDonation == null){
+      this._loadInfo()
+    }else{
+      listInstitutions().orderByChild(typeDonation).equalTo(true).on('value', snapshot => {
+        if(snapshot.val()){
+          this.setState({
+            institutions: snapshot.val(),
+            isLoading: false
+          });
+        }else{
+          this.setState({
+            institutions: {},
+            isLoading: false
+          });
+        }
+       
+      });
+    }
+   
+  }
+
+
+  _loadBySearch(title){
+    if(title == null){
+      this._loadInfo()
+    }else{
+      listInstitutions().orderByChild('title').startAt(title).on('value', snapshot => {
+        if(snapshot.val()){
+          this.setState({
+            institutions: snapshot.val(),
+            isLoading: false
+          });
+        }else{
+          this.setState({
+            institutions: {},
+            isLoading: false
+          });
+        }
+       
+      });
+    }
+   
+  }
 
   render() {
 
     return (
 
       <Container>
-        <Header withSearch={true} Title={""} Filter={true} />
-        <View>
-          <Text>Welcome to my awesome aapp!</Text>
-        </View>
-
+        <Header withSearch={true} Title={""} Filter={true} filterFunction={this._loadByfilterDonation.bind(this)} searchFunction={this._loadBySearch.bind(this)}/>
+      
         <ContainerCard >
 
           {
@@ -79,6 +125,10 @@ class Main extends React.Component {
 
           {
             this.state.isLoading ? <Loading text="Carregando as instituições..." /> : <></>
+          }
+
+          {
+             Object.keys(this.state.institutions).length == 0 && <Text>Não temos nada!</Text>
           }
 
         </ContainerCard>

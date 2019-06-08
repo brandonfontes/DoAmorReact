@@ -6,9 +6,9 @@ import { Container, Text } from './styles';
 
 import { withNavigation } from 'react-navigation';
 
-import { getInstitution } from '~/services/institutions';
+import { getInstitution, getUser } from '~/services/institutions';
 
-//import EditDonor from '~/components/EditDonor';
+import EditDonor from '~/components/EditDonor';
 import EditInstitution from '~/components/EditInstitution';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -20,7 +20,8 @@ class Edit extends React.Component {
     });
 
     state = {
-        institution: {}
+        institution: {},
+        user: {},
     }
 
 
@@ -30,11 +31,17 @@ class Edit extends React.Component {
                 institution: snap.val()
             });
         })
+        getUser(this.props.navigation.getParam('id')).on('value', snap => {
+            this.setState({
+                user: snap.val()
+            });
+        })
     }
 
     componentWillUnmount() {
         this.setState({
-            institution: {}
+            institution: {},
+            user: {},
         })
     }
 
@@ -42,8 +49,11 @@ class Edit extends React.Component {
         return (
 
             <Container>
-            <Text>{this.state.institution.latitude}</Text>
-                <EditInstitution />
+                
+                {
+                    (this.state.user.type == 'donor') ? <EditDonor /> : <EditInstitution />
+                }
+                
 
             </Container>
         );

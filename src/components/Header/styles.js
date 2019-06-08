@@ -38,12 +38,13 @@ export const CardFilter = styled.View`
     border: ${colors.darkTransparent};
     margin: 0 ${metrics.miniMargin}px ${metrics.smallMargin}px 0;
     padding: ${metrics.smallPadding}px;
-    background: ${colors.lightTransparent};
+    background: ${props => props.active ? colors.primary : colors.lightTransparent};
+   
 
 `;
 
 
-export const TitleFilter = styled.Text`
+export const TitleFilter = styled.TouchableOpacity`
 
     font-size: ${fonts.Title}px;
     background: rgba(0,0,0,0);

@@ -3,11 +3,14 @@ import metrics from './metrics';
 
 const defaultStyles = {
   inputDefault: {
-    backgroundColor: "#FFF",
-    borderRadius: 5,
     borderBottomWidth: 0,
     paddingLeft: metrics.basePadding,
-    paddingRight: metrics.basePadding
+    paddingRight: metrics.basePadding,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 25,
+    marginLeft: 15,
+    marginRight: 15
   },
   inputContainer: {
     borderWidth: 1,
@@ -18,8 +21,8 @@ const defaultStyles = {
     height: 45,
     margin: 0,
     padding: 0,
+    paddingLeft:15
   },
-
   label: {
     marginTop: metrics.baseMargin,
     marginBottom: metrics.baseMargin / 2

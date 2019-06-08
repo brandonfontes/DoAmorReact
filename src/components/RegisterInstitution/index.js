@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Text, View } from 'react-native';
+import { Text, View , Picker} from 'react-native';
 
 import { ProfileContainer, FormLogin, ContainerTitle, Title } from './styles';
 
@@ -156,6 +156,20 @@ class RegisterInstitution extends Component {
                         placeholder="Telefone da instituição"
                         keyboardType={'numeric'}
                         onChangeText={phone => this.setState({ phone })} />
+
+
+                    <Picker
+                        style={defaultStyles.inputDefault}
+                        // style={{height: 50, width: 100}}
+                        onValueChange={(typeInstitution, itemIndex) =>
+                            this.setState({typeInstitution:typeInstitution})
+                        }>
+                        <Picker.Item label="Crianças" value="child" />
+                        <Picker.Item label="Familia" value="family" />
+                        <Picker.Item label="Sangue" value="blood" />
+                        <Picker.Item label="Abrigo" value="shelter" />
+                        <Picker.Item label="Pessoas com deficiencia" value="deficient" />
+                    </Picker>
 
                     <ContainerTitle>
                         <Title> Aceitamos doação de: </Title>
