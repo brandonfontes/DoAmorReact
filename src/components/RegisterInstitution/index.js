@@ -85,7 +85,7 @@ class RegisterInstitution extends Component {
 
                 });
 
-                alert('Usuário cadastrado com sucesso!');
+                alert('Instituição cadastrada com sucesso!');
                 this.props.navigation.navigate('Profile');
             }
         });
@@ -160,7 +160,7 @@ class RegisterInstitution extends Component {
 
                     <Picker
                         style={defaultStyles.inputDefault}
-                        // style={{height: 50, width: 100}}
+                        selectedValue={this.state.typeInstitution}
                         onValueChange={(typeInstitution, itemIndex) =>
                             this.setState({typeInstitution:typeInstitution})
                         }>

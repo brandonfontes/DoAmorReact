@@ -8,9 +8,11 @@ export const Container = styled.View`
 
 `
 
-export const ProfileContainer = styled.ScrollView`
+export const ProfileContainer = styled.ScrollView.attrs({
+  contentContainerStyle: { paddingBottom: 80},
+  vertical: true,
 
-`
+})``;
 
 export const PhotoContainer = styled.View`
   align-items: center;

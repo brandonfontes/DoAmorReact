@@ -10,7 +10,7 @@ export const Container = styled(Animated.View)`
 `;
 
 export const AboutContainer = styled.ScrollView.attrs({
-    contentContainerStyle: { paddingTop: 0, paddingBottom: 80},
+    contentContainerStyle: { paddingBottom: 80},
     vertical: true,
   
   })``;
