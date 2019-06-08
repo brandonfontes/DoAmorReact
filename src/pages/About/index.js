@@ -50,7 +50,7 @@ class About extends React.Component {
 
                     <ContainerCard >
                         <TitleCard>
-                            Instrutores
+                            Orientadores do TCC
                         </TitleCard>
                         <Text>Nicolau Calado</Text>
                         <Text>José Mario</Text>
@@ -58,7 +58,7 @@ class About extends React.Component {
 
                     <ContainerCard >
                         <TitleCard>
-                            Instrutor de Desenvolvimento
+                            Orientador de Desenvolvimento
                         </TitleCard>
                         <Text>Erick Haendel</Text>
                     </ContainerCard>

@@ -18,6 +18,13 @@ A aplicação estará disponível nas plataformas Android e iOS. Desenvolvida na
 - Thiago Moreira
 - Victor Hugo
 
+## Orientadores do TCC/TCC Advisors
+- José Mario
+- Nicolau Calado
+
+## Orientador de Desenvolvimento/Development Counselor
+- Erick Haendel
+
 ## Telas/Screens
 - [x] Login
 - [x] Cadastro Instituição / *Institution Registration*
