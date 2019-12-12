@@ -16,7 +16,7 @@ import { listInstitutions } from '~/services/institutions';
 import { withNavigation } from 'react-navigation';
 
 import { Container } from './styles';
-import MapView, { Marker, ProviderPropType } from 'react-native-maps';
+import MapView, { Marker, ProviderPropType, PROVIDER_GOOGLE  } from 'react-native-maps';
 
 const { width, height } = Dimensions.get('window');
 
@@ -144,15 +144,22 @@ class Map extends React.Component {
             provider={this.props.provider}
             style={styles.map}
             initialRegion={this.state.region}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+            followUserLocation={true}
+            provider={PROVIDER_GOOGLE}
+            showsMyLocationButton={true}
+  
+
           >
 
-            <MapView.Marker
+            {/* <MapView.Marker
               key={''}
               coordinate={{
                 latitude: this.state.latitude,
                 longitude: this.state.longitude
               }}
-            />
+            /> */}
 
             {
               Object.keys(this.state.institutions).map((key) => (

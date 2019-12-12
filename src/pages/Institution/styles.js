@@ -34,6 +34,8 @@ export const HeaderImage = styled.View`
 export const TitleHeader = styled.Text`
   color: ${colors.light};
   font-size: 24px;
+  text-align: center;
+
 `
 
 export const Card = styled.View`
